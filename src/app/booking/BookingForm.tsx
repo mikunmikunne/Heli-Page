@@ -12,7 +12,7 @@ import { FormState } from "./types";
 import ReCAPTCHA from "react-google-recaptcha";
 
 const SHOWROOMS = [
-  "Heli Wellness Showroom HCMC - 123 Nguyen Hue, District 1",
+  "Heli Showroom HCMC - 7/1 Thành Thái, Quận 10",
   "Heli Wellness Showroom Hanoi - 456 Trang Tien, Hoan Kiem"
 ];
 

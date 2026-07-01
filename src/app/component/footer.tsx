@@ -69,19 +69,32 @@ export default function Footer() {
           <h3 className="text-gray-700 dark:text-gray-300 font-bold mb-6 text-sm uppercase tracking-wider">Contact</h3>
           <ul className="space-y-4">
             <li className="text-slate-500 dark:text-slate-400 text-sm">
+              <span className="font-semibold block text-[10px] text-slate-400 dark:text-slate-500 mb-1 uppercase tracking-wider">Email:</span>
               <a
-                href="mailto:support@helicorp.vn"
-                className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
+                href="mailto:mikun.creatory@gmail.com"
+                className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors font-bold text-sm"
               >
-                support@helicorp.vn
+                Heli Chair
               </a>
             </li>
             <li className="text-slate-500 dark:text-slate-400 text-sm">
+              <span className="font-semibold block text-[10px] text-slate-400 dark:text-slate-500 mb-1 uppercase tracking-wider">Hotline:</span>
               <a
                 href="tel:+84374716789"
-                className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
+                className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors font-bold"
               >
                 (+84) 374 716 789
+              </a>
+            </li>
+            <li className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">
+              <span className="font-semibold block text-[10px] text-slate-400 dark:text-slate-500 mb-1 uppercase tracking-wider">Showroom HCM:</span>
+              <a
+                href="https://maps.app.goo.gl/Qtyguk6nqMRt6J2Q6"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors text-xs font-semibold"
+              >
+                7/1 Thành Thái, Phường 14, Quận 10, TP. Hồ Chí Minh
               </a>
             </li>
           </ul>

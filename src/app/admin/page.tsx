@@ -77,7 +77,7 @@ const INITIAL_MOCK_BOOKINGS: AdminBooking[] = [
     phone: "0987654321",
     employee_count: "1 person",
     preferred_date: "2026-07-01",
-    location: "Showroom: Heli Wellness Showroom HCMC - 123 Nguyen Hue, District 1",
+    location: "Showroom: Heli Showroom HCMC - 7/1 Thành Thái, Quận 10",
     details: "[Status: Confirmed] [Note: Preparing tea for consultation]. Showroom Trial Session at 10:30 AM - 11:30 AM.",
     created_at: "2026-06-30T09:30:00Z"
   }
