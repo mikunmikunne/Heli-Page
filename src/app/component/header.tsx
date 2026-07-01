@@ -191,10 +191,10 @@ export default function Header() {
             ) : (
               <Link
                 href="/login"
-                className="bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2 rounded-full font-bold text-xs shadow-md transition-all active:scale-95 flex items-center gap-1"
+                className="bg-emerald-600 hover:bg-emerald-700 text-white p-2.5 sm:px-5 sm:py-2 rounded-full font-bold text-xs shadow-md transition-all active:scale-95 flex items-center gap-1.5 shrink-0"
               >
-                <User className="w-3.5 h-3.5" />
-                <span>Sign In</span>
+                <User className="w-4 h-4 sm:w-3.5 sm:h-3.5" />
+                <span className="hidden sm:inline">Sign In</span>
               </Link>
             )}
 
@@ -222,7 +222,7 @@ export default function Header() {
         {/* Backdrop */}
         <div className="absolute inset-0 bg-slate-950/40 backdrop-blur-sm" onClick={() => setIsCartOpen(false)} />
         {/* Panel */}
-        <div className={`relative w-full max-w-md bg-white dark:bg-slate-900 h-full shadow-2xl flex flex-col transition-transform duration-300 ease-out ${isCartOpen ? "translate-x-0" : "translate-x-full"}`}>
+        <div className={`relative w-[85vw] sm:w-[50vw] md:w-[40vw] lg:w-[30vw] min-w-[280px] max-w-[400px] bg-white dark:bg-slate-900 h-full shadow-2xl flex flex-col transition-transform duration-300 ease-out ${isCartOpen ? "translate-x-0" : "translate-x-full"}`}>
           <div className="p-6 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
             <h3 className="text-xl font-black text-slate-900 dark:text-white flex items-center gap-2">
               <ShoppingCart className="w-5 h-5 text-emerald-600" />
@@ -303,7 +303,7 @@ export default function Header() {
         {/* Backdrop */}
         <div className="absolute inset-0 bg-slate-950/40 backdrop-blur-sm" onClick={() => setIsFavsOpen(false)} />
         {/* Panel */}
-        <div className={`relative w-full max-w-md bg-white dark:bg-slate-900 h-full shadow-2xl flex flex-col transition-transform duration-300 ease-out ${isFavsOpen ? "translate-x-0" : "translate-x-full"}`}>
+        <div className={`relative w-[85vw] sm:w-[50vw] md:w-[40vw] lg:w-[30vw] min-w-[280px] max-w-[400px] bg-white dark:bg-slate-900 h-full shadow-2xl flex flex-col transition-transform duration-300 ease-out ${isFavsOpen ? "translate-x-0" : "translate-x-full"}`}>
           <div className="p-6 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
             <h3 className="text-xl font-black text-slate-900 dark:text-white flex items-center gap-2">
               <Heart className="w-5 h-5 text-rose-500 fill-rose-500" />
