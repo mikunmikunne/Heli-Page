@@ -12,7 +12,6 @@ import Image from "next/image";
 const navItems = [
   { label: "Home", href: "/" },
   { label: "Book / Buy", href: "/booking" },
-  { label: "Contact", href: "/contact-us" },
 ];
 
 export default function Header() {

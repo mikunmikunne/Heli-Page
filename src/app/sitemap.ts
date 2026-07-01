@@ -17,12 +17,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'monthly' as const,
       priority: 0.8,
     },
-    {
-      url: `${baseUrl}/contact-us`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.8,
-    },
   ];
 
   return staticRoutes;
