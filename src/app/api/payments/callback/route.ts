@@ -21,7 +21,7 @@ export async function GET(req: Request) {
         const { data: updatedData, error } = await supabase
           .from('bookings')
           .update({
-            details: `[Paid via VNPay Sandbox] Status: Completed. Amount paid: ${parseInt(amountStr || '0') / 100} VND.`
+            details: `[Status: Completed] [Note: Paid via VNPay Sandbox] Amount paid: ${(parseInt(amountStr || '0') / 100).toLocaleString('vi-VN')} VND.`
           })
           .eq('id', bookingId)
           .select('*');
