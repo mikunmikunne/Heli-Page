@@ -18,10 +18,25 @@ export async function GET(req: Request) {
     if (isSuccess) {
       // 1. Update order status in Supabase
       try {
+        // Fetch current details first to preserve quantity, item info, and customer notes
+        const { data: currentBooking } = await supabase
+          .from('bookings')
+          .select('details')
+          .eq('id', bookingId)
+          .single();
+          
+        const oldDetails = currentBooking?.details || "";
+        const cleanDetails = oldDetails
+          .replace(/\[Status:\s*[^\]]+\]/gi, "")
+          .replace(/\[Note:\s*[^\]]*\]/gi, "")
+          .trim();
+          
+        const newDetails = `[Status: Completed] [Note: Paid via VNPay Sandbox (Amount: ${(parseInt(amountStr || '0') / 100).toLocaleString('vi-VN')} VND)] ${cleanDetails}`;
+
         const { data: updatedData, error } = await supabase
           .from('bookings')
           .update({
-            details: `[Status: Completed] [Note: Paid via VNPay Sandbox] Amount paid: ${(parseInt(amountStr || '0') / 100).toLocaleString('vi-VN')} VND.`
+            details: newDetails
           })
           .eq('id', bookingId)
           .select('*');

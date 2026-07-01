@@ -72,9 +72,17 @@ export async function POST(req: Request) {
       ? `Showroom: ${showroomLocation}` 
       : `Shipping: ${shippingAddress}`;
       
+    // Parse cart items if present
+    let finalModelDesc = `${chairId} (x${quantity || 1})`;
+    if (chairId === "cart_checkout" && body.cartItems && Array.isArray(body.cartItems)) {
+      finalModelDesc = body.cartItems
+        .map((item: any) => `${item.chairId} (x${item.quantity})`)
+        .join(", ");
+    }
+
     const dbDetails = bookingType === 'experience'
       ? `Showroom Trial Session at ${preferredTime}. Note: ${details || 'None'}`
-      : `Heli Pre-order: Model ${chairId} (x${quantity || 1}). Amount: ${totalAmount} VND. Note: ${details || 'None'}`;
+      : `Heli Pre-order: Model ${finalModelDesc}. Amount: ${totalAmount} VND. Note: ${details || 'None'}`;
 
     // 3. Insert to Supabase DB
     const { data: dbData, error } = await supabase
@@ -85,7 +93,7 @@ export async function POST(req: Request) {
           company_name: bookingType === 'order' ? 'Individual Pre-order' : 'Showroom Booking',
           email: email,
           phone: phone,
-          employee_count: bookingType === 'order' ? `${chairId} (x${quantity || 1})` : '1-20 employees',
+          employee_count: bookingType === 'order' ? finalModelDesc : '1-20 employees',
           preferred_date: preferredDate || new Date().toISOString().split('T')[0],
           location: dbLocation,
           details: dbDetails,

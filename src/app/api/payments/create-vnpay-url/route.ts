@@ -12,8 +12,9 @@ export async function POST(req: Request) {
     const tmnCode = process.env.VNP_TMN_CODE;
     const hashSecret = process.env.VNP_HASH_SECRET;
     
+    /* 
     // If VNPay is configured, we can generate a real VNPay Sandbox URL
-    if (tmnCode && hashSecret) {
+    if (false && tmnCode && hashSecret) {
       const vnpUrl = 'https://sandbox.vnpayment.vn/paymentv2/vpcpay.html';
       const date = new Date();
       const createDate = formatDate(date);
@@ -46,6 +47,7 @@ export async function POST(req: Request) {
       const paymentUrl = `${vnpUrl}?${signData}&vnp_SecureHash=${signed}`;
       return NextResponse.json({ vnpayUrl: paymentUrl }, { status: 200 });
     }
+    */
 
     // Otherwise, redirect to a beautiful local Mock Payment Gateway Page for sandbox testing
     const mockUrl = `/booking/payment-mock?bookingId=${bookingId}&amount=${amount}&description=${encodeURIComponent(description)}`;

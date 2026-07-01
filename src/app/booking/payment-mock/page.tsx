@@ -1,8 +1,8 @@
 "use client";
 
 import { useSearchParams, useRouter } from "next/navigation";
-import { CreditCard, ShieldCheck, AlertCircle } from "lucide-react";
-import { Suspense } from "react";
+import { CreditCard, ShieldCheck, AlertCircle, RefreshCw, Landmark, Calendar, User, KeyRound } from "lucide-react";
+import { Suspense, useState } from "react";
 
 function MockPaymentContent() {
   const router = useRouter();
@@ -12,75 +12,173 @@ function MockPaymentContent() {
   const amount = parseInt(searchParams.get("amount") || "0");
   const description = searchParams.get("description") || "Heli Smart Massage Chair";
 
-  const handleSimulatePayment = (success: boolean) => {
-    const callbackParams = new URLSearchParams({
-      vnp_ResponseCode: success ? "00" : "24", // 00 = Success, 24 = Cancelled
-      vnp_TxnRef: bookingId,
-      vnp_Amount: String(amount * 100)
-    });
+  // Pre-filled form states
+  const [bank, setBank] = useState("NCB - Ngân hàng Quốc Dân");
+  const [cardNumber, setCardNumber] = useState("9704 1985 2619 1432 198");
+  const [cardHolder, setCardHolder] = useState("NGUYEN VAN A");
+  const [expiryDate, setExpiryDate] = useState("07/15");
+  const [otp, setOtp] = useState("123456");
+  const [isProcessing, setIsProcessing] = useState(false);
 
-    router.push(`/api/payments/callback?${callbackParams.toString()}`);
+  const handleSimulatePayment = (success: boolean) => {
+    setIsProcessing(true);
+    
+    // Simulate a brief bank processing latency
+    setTimeout(() => {
+      const callbackParams = new URLSearchParams({
+        vnp_ResponseCode: success ? "00" : "24", // 00 = Success, 24 = Cancelled
+        vnp_TxnRef: bookingId,
+        vnp_Amount: String(amount * 100)
+      });
+      router.push(`/api/payments/callback?${callbackParams.toString()}`);
+    }, 1200);
   };
 
   return (
-    <div className="w-full max-w-md bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden">
+    <div className="w-full max-w-lg bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden">
       
-      {/* Mock VNPay Header */}
-      <div className="p-6 bg-blue-600 text-white flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <CreditCard className="w-6 h-6" />
-          <span className="font-black tracking-wider text-lg">VNPay Sandbox Simulator</span>
+      {/* VNPAY Brand Header */}
+      <div className="p-6 bg-gradient-to-r from-blue-700 to-indigo-800 text-white flex items-center justify-between">
+        <div className="flex items-center gap-2.5">
+          <Landmark className="w-6 h-6 text-amber-400" />
+          <div>
+            <span className="font-black tracking-wider text-lg block leading-none">VNPAY</span>
+            <span className="text-[10px] text-blue-200 uppercase tracking-widest font-extrabold">Sandbox Simulator</span>
+          </div>
         </div>
-        <span className="text-[10px] uppercase font-black tracking-widest px-2 py-0.5 bg-white/20 rounded-md">Testing</span>
+        <span className="text-[10px] uppercase font-black tracking-widest px-2.5 py-1 bg-white/10 rounded-lg border border-white/20">
+          Demo Mode
+        </span>
       </div>
 
-      {/* Payment Summary */}
-      <div className="p-6 sm:p-8 space-y-6">
-        <div className="text-center">
-          <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Payment Amount</p>
-          <h2 className="text-3xl font-black text-slate-950 dark:text-white mt-1">
+      {/* Payment Summary Box */}
+      <div className="p-6 border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/10 grid grid-cols-2 gap-4 text-xs">
+        <div>
+          <p className="text-slate-400 font-bold uppercase tracking-wider text-[10px]">Merchant Name</p>
+          <p className="font-extrabold text-slate-800 dark:text-white mt-1 text-sm">HELI CORP</p>
+        </div>
+        <div className="text-right">
+          <p className="text-slate-400 font-bold uppercase tracking-wider text-[10px]">Payment Amount</p>
+          <p className="font-black text-emerald-600 dark:text-emerald-400 mt-1 text-lg">
             {amount.toLocaleString()} VND
-          </h2>
-        </div>
-
-        <div className="space-y-3 bg-slate-50 dark:bg-slate-800/40 p-4 rounded-2xl text-xs text-slate-600 dark:text-slate-400">
-          <div className="flex justify-between">
-            <span>Merchant:</span>
-            <span className="font-bold text-slate-850 dark:text-white">HELI CORP</span>
-          </div>
-          <div className="flex justify-between">
-            <span>Transaction Ref:</span>
-            <span className="font-bold text-slate-850 dark:text-white">{bookingId}</span>
-          </div>
-          <div className="flex justify-between">
-            <span>Description:</span>
-            <span className="font-bold text-slate-850 dark:text-white text-right max-w-[200px] truncate">{description}</span>
-          </div>
-        </div>
-
-        {/* Alert Info */}
-        <div className="p-4 rounded-xl bg-amber-50 dark:bg-amber-950/20 border border-amber-100 dark:border-amber-900/35 text-amber-800 dark:text-amber-300 text-xs flex gap-3 items-start">
-          <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
-          <p className="leading-relaxed">
-            This simulator bypasses OTP checks and real money transfers to test callback redirects, Supabase database storage synchronization, and Nodemailer SMTP notifications.
           </p>
         </div>
+        <div className="col-span-2 pt-2 border-t border-slate-100 dark:border-slate-800 flex justify-between items-center">
+          <span className="text-slate-400 font-semibold">Description:</span>
+          <span className="font-bold text-slate-700 dark:text-slate-300 truncate max-w-[260px]">
+            {description}
+          </span>
+        </div>
+      </div>
 
-        {/* Action Simulation Buttons */}
-        <div className="space-y-3 pt-2">
+      {/* Test Credentials Alert Box */}
+      <div className="p-6 space-y-6">
+        <div className="p-4 rounded-2xl bg-amber-50 dark:bg-amber-950/20 border border-amber-100 dark:border-amber-900/30 text-amber-800 dark:text-amber-300 text-xs flex gap-3 items-start">
+          <AlertCircle className="w-4.5 h-4.5 shrink-0 text-amber-600 dark:text-amber-400" />
+          <div className="leading-relaxed">
+            <p className="font-black mb-1">Cổng thanh toán giả lập thử nghiệm VNPAY Sandbox</p>
+            <p className="font-semibold text-slate-600 dark:text-slate-400">
+              Thông tin thẻ test đã được điền sẵn dưới đây. Bạn chỉ cần bấm nút **Xác nhận thanh toán** để hoàn tất kiểm thử hóa đơn & gửi Email SMTP tự động!
+            </p>
+          </div>
+        </div>
+
+        {/* Card Input Form Fields */}
+        <div className="space-y-4">
+          <div className="flex flex-col gap-1.5">
+            <label className="text-[10px] uppercase tracking-wider font-extrabold text-slate-500">Ngân hàng phát hành thẻ</label>
+            <div className="relative">
+              <input
+                type="text"
+                readOnly
+                value={bank}
+                className="w-full bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-800 rounded-xl pl-10 pr-4 py-3 text-slate-900 dark:text-white text-xs font-bold focus:outline-none"
+              />
+              <Landmark className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-1.5">
+            <label className="text-[10px] uppercase tracking-wider font-extrabold text-slate-500">Số thẻ ATM thử nghiệm</label>
+            <div className="relative">
+              <input
+                type="text"
+                readOnly
+                value={cardNumber}
+                className="w-full bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-800 rounded-xl pl-10 pr-4 py-3 text-slate-900 dark:text-white text-xs font-bold focus:outline-none tracking-widest"
+              />
+              <CreditCard className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4">
+            <div className="flex flex-col gap-1.5">
+              <label className="text-[10px] uppercase tracking-wider font-extrabold text-slate-500">Tên chủ thẻ</label>
+              <div className="relative">
+                <input
+                  type="text"
+                  readOnly
+                  value={cardHolder}
+                  className="w-full bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-800 rounded-xl pl-10 pr-4 py-3 text-slate-900 dark:text-white text-xs font-bold focus:outline-none"
+                />
+                <User className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-1.5">
+              <label className="text-[10px] uppercase tracking-wider font-extrabold text-slate-500">Tháng/Năm phát hành</label>
+              <div className="relative">
+                <input
+                  type="text"
+                  readOnly
+                  value={expiryDate}
+                  className="w-full bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-800 rounded-xl pl-10 pr-4 py-3 text-slate-900 dark:text-white text-xs font-bold focus:outline-none"
+                />
+                <Calendar className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+              </div>
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-1.5">
+            <label className="text-[10px] uppercase tracking-wider font-extrabold text-slate-500">Mã xác thực OTP</label>
+            <div className="relative">
+              <input
+                type="text"
+                readOnly
+                value={otp}
+                className="w-full bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-800 rounded-xl pl-10 pr-4 py-3 text-slate-900 dark:text-white text-xs font-bold focus:outline-none tracking-widest"
+              />
+              <KeyRound className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+            </div>
+          </div>
+        </div>
+
+        {/* Action Buttons */}
+        <div className="space-y-3 pt-4 border-t border-slate-150 dark:border-slate-800">
           <button
             onClick={() => handleSimulatePayment(true)}
-            className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 px-4 rounded-xl shadow-lg shadow-emerald-600/20 flex items-center justify-center gap-2 transition active:scale-98 cursor-pointer"
+            disabled={isProcessing}
+            className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-4 px-4 rounded-2xl shadow-xl shadow-emerald-600/20 dark:shadow-emerald-900/10 flex items-center justify-center gap-2 transition active:scale-98 cursor-pointer disabled:opacity-80"
           >
-            <ShieldCheck className="w-5 h-5" />
-            <span>Simulate Success Payment (00)</span>
+            {isProcessing ? (
+              <>
+                <RefreshCw className="w-5 h-5 animate-spin" />
+                <span>Đang xử lý giao dịch...</span>
+              </>
+            ) : (
+              <>
+                <ShieldCheck className="w-5 h-5" />
+                <span>Xác nhận thanh toán (OTP: 123456)</span>
+              </>
+            )}
           </button>
 
           <button
             onClick={() => handleSimulatePayment(false)}
-            className="w-full bg-rose-600 hover:bg-rose-700 text-white font-bold py-3.5 px-4 rounded-xl shadow-md transition active:scale-98 cursor-pointer"
+            disabled={isProcessing}
+            className="w-full bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 font-bold py-3.5 px-4 rounded-2xl transition active:scale-98 cursor-pointer disabled:opacity-50 text-xs"
           >
-            <span>Simulate Cancelled / Failed Payment (24)</span>
+            Hủy giao dịch / Thanh toán thất bại
           </button>
         </div>
 
@@ -94,7 +192,7 @@ export default function PaymentMockPage() {
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex flex-col items-center justify-center py-12 px-4 sm:px-6">
       <Suspense fallback={
-        <div className="w-full max-w-md bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xl p-8 rounded-3xl flex flex-col items-center justify-center min-h-[300px]">
+        <div className="w-full max-w-md bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xl p-8 rounded-3xl flex flex-col items-center justify-center min-h-[350px]">
           <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-emerald-600"></div>
         </div>
       }>
