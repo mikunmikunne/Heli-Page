@@ -3,6 +3,8 @@
 import { useState, useRef, useEffect } from "react";
 import { MessageSquare, X, Send, Sparkles, User, RefreshCw } from "lucide-react";
 import { CHAIR_MODELS } from "@/utils/chairModels";
+import { useAuth } from "@/context/AuthContext";
+import { supabase } from "@/utils/supabaseClient";
 
 interface Message {
   sender: "user" | "bot";
@@ -24,6 +26,7 @@ const getFormattedTime = () => {
 };
 
 export default function Chatbot() {
+  const { user } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
@@ -55,6 +58,30 @@ export default function Chatbot() {
     
     // 2. Trigger bot typing
     setIsTyping(true);
+
+    // 3. Save message to contacts database
+    const senderName = user?.email 
+      ? (user.user_metadata?.full_name || user.email.split("@")[0]) 
+      : "Guest User";
+    const senderEmail = user?.email || "guest_chatbot@heli.com";
+    
+    const saveChatToDb = async () => {
+      try {
+        const { error } = await supabase.from("contacts").insert([
+          {
+            full_name: senderName,
+            email: senderEmail,
+            message: `[Chatbot] ${text}`
+          }
+        ]);
+        if (error) {
+          console.error("Error saving chatbot message to Supabase:", error);
+        }
+      } catch (err) {
+        console.error("Failed to run Supabase insert:", err);
+      }
+    };
+    saveChatToDb();
     
     setTimeout(() => {
       const botResponse = generateBotResponse(text);

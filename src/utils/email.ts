@@ -148,10 +148,9 @@ export async function sendBookingEmails(data: BookingEmailData): Promise<void> {
           </div>
           <div class="footer">
             <p>&copy; ${new Date().getFullYear()} Heli Smart Massage Chair. All rights reserved.</p>
-            <p>7/1 Đ. Thành Thái, Diên Hồng, Hồ Chí Minh 700000, Việt Nam</p>
+            <p>Chi tiết tại: <a href="${siteUrl}" style="color: #047857; text-decoration: underline; font-weight: bold;">Heli Smart Chair</a></p>
             <p style="margin-top: 8px; font-size: 13px; color: #4b5563;">
-              Email: <a href="mailto:Heli%20%3Csupport@helicorp.vn%3E" style="color: #047857; text-decoration: underline; font-weight: 600;">support@helicorp.vn</a> | 
-              Website: <a href="${siteUrl}" style="color: #047857; text-decoration: underline; font-weight: 600;">Heli</a>
+              Email: <a href="mailto:Heli%20%3Csupport@helicorp.vn%3E" style="color: #047857; text-decoration: underline; font-weight: 600;">support@helicorp.vn</a>
             </p>
           </div>
         </div>
@@ -300,10 +299,9 @@ export async function sendContactEmail(data: ContactEmailData): Promise<void> {
           </div>
           <div class="footer">
             <p>&copy; ${new Date().getFullYear()} Heli Smart Massage Chair. All rights reserved.</p>
-            <p>7/1 Đ. Thành Thái, Diên Hồng, Hồ Chí Minh 700000, Việt Nam</p>
+            <p>Chi tiết tại: <a href="${siteUrl}" style="color: #047857; text-decoration: underline; font-weight: bold;">Heli Smart Chair</a></p>
             <p style="margin-top: 8px; font-size: 13px; color: #4b5563;">
-              Email: <a href="mailto:Heli%20%3Csupport@helicorp.vn%3E" style="color: #047857; text-decoration: underline; font-weight: 600;">support@helicorp.vn</a> | 
-              Website: <a href="${siteUrl}" style="color: #047857; text-decoration: underline; font-weight: 600;">Heli</a>
+              Email: <a href="mailto:Heli%20%3Csupport@helicorp.vn%3E" style="color: #047857; text-decoration: underline; font-weight: 600;">support@helicorp.vn</a>
             </p>
           </div>
         </div>
@@ -380,6 +378,7 @@ export async function sendNewsletterConfirmationEmail(email: string): Promise<vo
   const fromName = process.env.SMTP_FROM_NAME || 'Heli Smart Massage Chair Team';
   const fromEmail = process.env.SMTP_USER;
 
+  const siteUrl = process.env.SITE_URL || 'https://heli-smart-massage-chair-web.vercel.app/';
   const htmlContent = `
     <!DOCTYPE html>
     <html>
@@ -406,7 +405,7 @@ export async function sendNewsletterConfirmationEmail(email: string): Promise<vo
           </div>
           <div class="footer">
             <p>&copy; ${new Date().getFullYear()} Heli Smart Massage Chair. All rights reserved.</p>
-            <p>7/1 Đ. Thành Thái, Diên Hồng, Hồ Chí Minh, Việt Nam</p>
+            <p>Chi tiết tại: <a href="${siteUrl}" style="color: #047857; text-decoration: underline; font-weight: bold;">Heli Smart Chair</a></p>
           </div>
         </div>
       </body>
