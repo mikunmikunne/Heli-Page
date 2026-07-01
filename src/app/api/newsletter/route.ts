@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { supabase } from "@/utils/supabaseServer";
 import { isValidEmail } from "@/utils/validators";
 import { isRateLimited } from "@/utils/rateLimit";
+import { sendNewsletterConfirmationEmail } from "@/utils/email";
 
 export async function POST(req: Request) {
   try {
@@ -33,6 +34,13 @@ export async function POST(req: Request) {
     if (error) {
       console.error("[Newsletter API] Supabase Insert Error:", error);
       throw error;
+    }
+
+    // Send SMTP confirmation email to subscriber
+    try {
+      await sendNewsletterConfirmationEmail(email);
+    } catch (emailErr) {
+      console.error("[Newsletter API] Failed to send SMTP confirmation email:", emailErr);
     }
 
     // Forward to Tracking Webhook

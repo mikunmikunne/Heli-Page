@@ -366,3 +366,57 @@ export async function sendContactEmail(data: ContactEmailData): Promise<void> {
     html: adminHtml,
   });
 }
+
+/**
+ * Gửi email xác nhận đăng ký bản tin (Newsletter) thành công.
+ */
+export async function sendNewsletterConfirmationEmail(email: string): Promise<void> {
+  const transporter = getTransporter();
+  if (!transporter) {
+    console.warn('[Email Utility] SMTP_USER or SMTP_PASS is missing. Skipping newsletter confirmation email.');
+    return;
+  }
+
+  const fromName = process.env.SMTP_FROM_NAME || 'Heli Smart Massage Chair Team';
+  const fromEmail = process.env.SMTP_USER;
+
+  const htmlContent = `
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <meta charset="utf-8">
+        <title>Đăng ký bản tin thành công</title>
+        <style>
+          body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; color: #333; margin: 0; padding: 0; }
+          .container { max-width: 600px; margin: 30px auto; background: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+          .header { background: linear-gradient(135deg, #065f46, #047857); padding: 40px 30px; text-align: center; color: #ffffff; }
+          .header h1 { margin: 0; font-size: 24px; font-weight: 700; }
+          .content { padding: 40px 30px; line-height: 1.6; font-size: 15px; }
+          .footer { background-color: #f9fafb; padding: 25px 30px; text-align: center; font-size: 12px; color: #9ca3af; border-top: 1px solid #f3f4f6; }
+        </style>
+      </head>
+      <body>
+        <div class="container">
+          <div class="header">
+            <h1>Heli Smart Massage Chair</h1>
+          </div>
+          <div class="content">
+            <p>Chào bạn,</p>
+            <p>Chúng tôi đã nhận được thông tin gmail của bạn. Chúng tôi sẽ thông báo cho bạn những tin tức mới nhất của Heli. Heli xin cảm ơn!</p>
+          </div>
+          <div class="footer">
+            <p>&copy; ${new Date().getFullYear()} Heli Smart Massage Chair. All rights reserved.</p>
+            <p>7/1 Đ. Thành Thái, Diên Hồng, Hồ Chí Minh, Việt Nam</p>
+          </div>
+        </div>
+      </body>
+    </html>
+  `;
+
+  await transporter.sendMail({
+    from: `"${fromName}" <${fromEmail}>`,
+    to: email,
+    subject: 'Xác nhận đăng ký nhận bản tin thành công | Heli Smart Massage Chair',
+    html: htmlContent,
+  });
+}
