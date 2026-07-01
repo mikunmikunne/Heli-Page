@@ -1,0 +1,128 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --primary: #059669; /* emerald-600 */
+  --primary-hover: #047857; /* emerald-700 */
+  --secondary: #0d9488; /* teal-600 */
+  --secondary-light: #ccfbf1; /* teal-100 */
+  
+  --bg: #ffffff;
+  --text: #0f172a; /* slate-900 */
+  
+  --surface-container-low: #f8fafc; /* slate-50 */
+  --surface-container-high: #ecfdf5; /* emerald-50 */
+  --surface-container-highest: #e2e8f0; /* slate-200 */
+  --surface-container-lowest: #ffffff;
+  --on-surface-variant: #475569; /* slate-600 */
+  --border: #e2e8f0; /* slate-200 */
+
+  --nav-bg: rgba(255, 255, 255, 0.7);
+  --nav-border: #e2e8f0;
+  --nav-text: #475569;
+  --nav-hover: #059669;
+
+  --accent-light: rgba(5, 150, 105, 0.05); /* emerald-600/5 */
+  
+  --background: var(--bg);
+  --foreground: var(--text);
+}
+
+.dark {
+  --primary: #10b981; /* emerald-500 */
+  --primary-hover: #34d399; /* emerald-400 */
+  --secondary: #14b8a6; /* teal-500 */
+  --secondary-light: rgba(16, 185, 129, 0.1); /* emerald-500/10 */
+  
+  --bg: #020617; /* slate-950 */
+  --text: #f8fafc; /* slate-50 */
+  
+  --surface-container-low: #0f172a; /* slate-900 */
+  --surface-container-high: #0f172a; /* slate-900 */
+  --surface-container-highest: #1e293b; /* slate-800 */
+  --surface-container-lowest: #0f172a; /* slate-900 */
+  --on-surface-variant: #94a3b8; /* slate-400 */
+  --border: #1e293b; /* slate-800 */
+
+  --nav-bg: rgba(2, 6, 23, 0.7);
+  --nav-border: #1e293b;
+  --nav-text: #94a3b8;
+  --nav-hover: #10b981;
+
+  --accent-light: rgba(16, 185, 129, 0.1); /* emerald-500/10 */
+
+  --background: var(--bg);
+  --foreground: var(--text);
+}
+
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-headline: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-label: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-secondary: var(--secondary);
+  --color-secondary-light: var(--secondary-light);
+  --color-accent-light: var(--accent-light);
+  --color-background: var(--bg);
+  --color-foreground: var(--text);
+  
+  --color-surface: var(--bg);
+  --color-surface-container-low: var(--surface-container-low);
+  --color-surface-container-high: var(--surface-container-high);
+  --color-surface-container-highest: var(--surface-container-highest);
+  --color-surface-container-lowest: var(--surface-container-lowest);
+  
+  --color-on-surface: var(--text);
+  --color-on-surface-variant: var(--on-surface-variant);
+  --color-outline-variant: var(--border);
+  --color-error: #ba1a1a;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+@layer base {
+  .glass-nav {
+    background-color: var(--nav-bg);
+    border-color: var(--nav-border);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+  }
+
+  .ambient-shadow {
+    box-shadow: 0 40px 60px -10px rgba(2, 6, 23, 0.04);
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.bg-primary {
+  background-color: var(--primary) !important;
+}
+
+.text-primary {
+  color: var(--primary) !important;
+}
+
+/* Custom styling to override browser autofill background and text colors in both light and dark modes */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+textarea:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px var(--surface-container-high) inset !important;
+  -webkit-text-fill-color: var(--text) !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
