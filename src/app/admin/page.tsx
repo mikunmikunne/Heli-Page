@@ -217,9 +217,9 @@ export default function AdminPage() {
   };
 
   // String parsers for Status and Notes stored in text columns
-  const parseStatus = (text: string) => {
+  const parseStatus = (text: string, defaultStatus = "Pending") => {
     const match = text.match(/\[Status:\s*([^\]]+)\]/i);
-    return match ? match[1].trim() : "Pending";
+    return match ? match[1].trim() : defaultStatus;
   };
 
   const parseNote = (text: string) => {
@@ -255,7 +255,7 @@ export default function AdminPage() {
       } else {
         const updated = contacts.map((c) => {
           if (c.id === id) {
-            const currentStatus = parseStatus(c.message);
+            const currentStatus = parseStatus(c.message, "Unprocessed");
             return { ...c, message: updateTextWithStatusAndNote(c.message, currentStatus, noteText) };
           }
           return c;
@@ -288,7 +288,7 @@ export default function AdminPage() {
       } else {
         const target = contacts.find((c) => c.id === id);
         if (target) {
-          const currentStatus = parseStatus(target.message);
+          const currentStatus = parseStatus(target.message, "Unprocessed");
           const newMsg = updateTextWithStatusAndNote(target.message, currentStatus, noteText);
           const { error } = await supabase
             .from("contacts")
@@ -447,7 +447,7 @@ export default function AdminPage() {
       c.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
       c.message.toLowerCase().includes(searchQuery.toLowerCase());
     
-    const currentStatus = parseStatus(c.message).toLowerCase();
+    const currentStatus = parseStatus(c.message, "Unprocessed").toLowerCase();
     const matchesFilter = statusFilter === "all" || currentStatus === statusFilter.toLowerCase();
 
     return matchesSearch && matchesFilter;
@@ -455,7 +455,7 @@ export default function AdminPage() {
 
   const filteredSubscribers = newsletterSubscribers.filter((s) => {
     const matchesSearch = s.email.toLowerCase().includes(searchQuery.toLowerCase());
-    const currentStatus = parseStatus(s.message).toLowerCase();
+    const currentStatus = parseStatus(s.message, "Unprocessed").toLowerCase();
     const matchesFilter = statusFilter === "all" || currentStatus === statusFilter.toLowerCase();
     return matchesSearch && matchesFilter;
   });
@@ -475,7 +475,7 @@ export default function AdminPage() {
     }, 0);
 
   const pendingBookingsCount = bookings.filter((b) => parseStatus(b.details).toLowerCase() === "pending").length;
-  const unprocessedMessagesCount = supportMessages.filter((c) => parseStatus(c.message).toLowerCase() === "unprocessed").length;
+  const unprocessedMessagesCount = supportMessages.filter((c) => parseStatus(c.message, "Unprocessed").toLowerCase() === "unprocessed").length;
 
   if (authLoading || !user || !isAdmin) {
     return (
@@ -718,14 +718,14 @@ export default function AdminPage() {
                             {b.company_name === "Showroom Booking" ? b.preferred_date : "—"}
                           </td>
                           <td className="p-5 min-w-[160px]">
-                            <div className="relative flex items-center">
+                            <div className="relative flex items-center w-36">
                               <select
                                 value={status}
                                 onChange={(e) => {
                                   handleStatusChange(b.id, e.target.value, "booking");
                                   alert("Status updated successfully.");
                                 }}
-                                className="w-36 pl-3 pr-8 py-1.5 bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-800 rounded-lg text-slate-900 dark:text-white font-bold text-xs focus:outline-none focus:border-emerald-500 appearance-none cursor-pointer"
+                                className="w-full pl-3 pr-8 py-1.5 bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-800 rounded-lg text-slate-900 dark:text-white font-bold text-xs focus:outline-none focus:border-emerald-500 appearance-none cursor-pointer"
                               >
                                 <option value="Pending">Pending</option>
                                 <option value="Confirmed">Confirmed</option>
@@ -789,7 +789,7 @@ export default function AdminPage() {
                   </thead>
                   <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60 text-slate-700 dark:text-slate-300">
                     {filteredContacts.map((c) => {
-                      const status = parseStatus(c.message);
+                      const status = parseStatus(c.message, "Unprocessed");
                       const noteVal = notesState[c.id] ?? "";
                       
                       // Strip status/note labels from message body for clean view
@@ -807,11 +807,11 @@ export default function AdminPage() {
                           <td className="p-5">{c.email}</td>
                           <td className="p-5 leading-relaxed">{cleanMsgBody}</td>
                           <td className="p-5 min-w-[160px]">
-                            <div className="relative flex items-center">
+                            <div className="relative flex items-center w-36">
                               <select
                                 value={status === "Replied" ? "Replied" : "Unprocessed"}
                                 onChange={(e) => handleStatusChange(c.id, e.target.value, "contact")}
-                                className="w-36 pl-3 pr-8 py-1.5 bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-800 rounded-lg text-slate-900 dark:text-white font-bold text-xs focus:outline-none focus:border-emerald-500 appearance-none cursor-pointer"
+                                className="w-full pl-3 pr-8 py-1.5 bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-800 rounded-lg text-slate-900 dark:text-white font-bold text-xs focus:outline-none focus:border-emerald-500 appearance-none cursor-pointer"
                               >
                                 <option value="Unprocessed">Unprocessed</option>
                                 <option value="Replied">Replied</option>

@@ -23,6 +23,15 @@ const getTransporter = () => {
   });
 };
 
+const getSiteUrl = (): string => {
+  const rawSiteUrl = process.env.SITE_URL || 
+                     (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://heli-smart-massage-chair-web.vercel.app/');
+  if (rawSiteUrl.includes('localhost') && process.env.VERCEL_URL) {
+    return `https://${process.env.VERCEL_URL}`;
+  }
+  return rawSiteUrl;
+};
+
 // Kiểu dữ liệu cho Booking
 export interface BookingEmailData {
   fullName: string;
@@ -58,7 +67,7 @@ export async function sendBookingEmails(data: BookingEmailData): Promise<void> {
   const adminEmail = process.env.ADMIN_EMAIL || process.env.SMTP_USER;
   const fromName = process.env.SMTP_FROM_NAME || 'Heli Smart Massage Chair Team';
   const fromEmail = process.env.SMTP_USER;
-  const siteUrl = process.env.SITE_URL || 'https://heli-smart-massage-chair-web.vercel.app/';
+  const siteUrl = getSiteUrl();
 
   // 1. HTML Template gửi cho KHÁCH HÀNG (Customer Confirmation)
   const customerHtml = `
@@ -248,7 +257,7 @@ export async function sendContactEmail(data: ContactEmailData): Promise<void> {
   const adminEmail = process.env.ADMIN_EMAIL || process.env.SMTP_USER;
   const fromName = process.env.SMTP_FROM_NAME || 'Heli Smart Massage Chair Team';
   const fromEmail = process.env.SMTP_USER;
-  const siteUrl = process.env.SITE_URL || 'https://heli-smart-massage-chair-web.vercel.app/';
+  const siteUrl = getSiteUrl();
 
   // 1. HTML Template gửi cho KHÁCH HÀNG (Customer Confirmation)
   const customerHtml = `
@@ -378,7 +387,7 @@ export async function sendNewsletterConfirmationEmail(email: string): Promise<vo
   const fromName = process.env.SMTP_FROM_NAME || 'Heli Smart Massage Chair Team';
   const fromEmail = process.env.SMTP_USER;
 
-  const siteUrl = process.env.SITE_URL || 'https://heli-smart-massage-chair-web.vercel.app/';
+  const siteUrl = getSiteUrl();
   const htmlContent = `
     <!DOCTYPE html>
     <html>
