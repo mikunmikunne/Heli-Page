@@ -13,7 +13,7 @@ function MockPaymentContent() {
   const description = searchParams.get("description") || "Heli Smart Massage Chair";
 
   // Pre-filled form states
-  const [bank, setBank] = useState("NCB - Ngân hàng Quốc Dân");
+  const [bank, setBank] = useState("NCB - National Citizen Bank");
   const [cardNumber, setCardNumber] = useState("9704 1985 2619 1432 198");
   const [cardHolder, setCardHolder] = useState("NGUYEN VAN A");
   const [expiryDate, setExpiryDate] = useState("07/15");
@@ -76,9 +76,9 @@ function MockPaymentContent() {
         <div className="p-4 rounded-2xl bg-amber-50 dark:bg-amber-950/20 border border-amber-100 dark:border-amber-900/30 text-amber-800 dark:text-amber-300 text-xs flex gap-3 items-start">
           <AlertCircle className="w-4.5 h-4.5 shrink-0 text-amber-600 dark:text-amber-400" />
           <div className="leading-relaxed">
-            <p className="font-black mb-1">Cổng thanh toán giả lập thử nghiệm VNPAY Sandbox</p>
+            <p className="font-black mb-1">VNPAY Sandbox Simulator (Test Mode)</p>
             <p className="font-semibold text-slate-600 dark:text-slate-400">
-              Thông tin thẻ test đã được điền sẵn dưới đây. Bạn chỉ cần bấm nút **Xác nhận thanh toán** để hoàn tất kiểm thử hóa đơn & gửi Email SMTP tự động!
+              The test card credentials have been pre-filled below. Simply click **Confirm Payment** to complete the mock checkout and trigger SMTP emails!
             </p>
           </div>
         </div>
@@ -86,7 +86,7 @@ function MockPaymentContent() {
         {/* Card Input Form Fields */}
         <div className="space-y-4">
           <div className="flex flex-col gap-1.5">
-            <label className="text-[10px] uppercase tracking-wider font-extrabold text-slate-500">Ngân hàng phát hành thẻ</label>
+            <label className="text-[10px] uppercase tracking-wider font-extrabold text-slate-500">Card Issuing Bank</label>
             <div className="relative">
               <input
                 type="text"
@@ -99,7 +99,7 @@ function MockPaymentContent() {
           </div>
 
           <div className="flex flex-col gap-1.5">
-            <label className="text-[10px] uppercase tracking-wider font-extrabold text-slate-500">Số thẻ ATM thử nghiệm</label>
+            <label className="text-[10px] uppercase tracking-wider font-extrabold text-slate-500">Test ATM Card Number</label>
             <div className="relative">
               <input
                 type="text"
@@ -113,7 +113,7 @@ function MockPaymentContent() {
 
           <div className="grid grid-cols-2 gap-4">
             <div className="flex flex-col gap-1.5">
-              <label className="text-[10px] uppercase tracking-wider font-extrabold text-slate-500">Tên chủ thẻ</label>
+              <label className="text-[10px] uppercase tracking-wider font-extrabold text-slate-500">Cardholder Name</label>
               <div className="relative">
                 <input
                   type="text"
@@ -126,7 +126,7 @@ function MockPaymentContent() {
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label className="text-[10px] uppercase tracking-wider font-extrabold text-slate-500">Tháng/Năm phát hành</label>
+              <label className="text-[10px] uppercase tracking-wider font-extrabold text-slate-500">Issue Month/Year</label>
               <div className="relative">
                 <input
                   type="text"
@@ -140,7 +140,7 @@ function MockPaymentContent() {
           </div>
 
           <div className="flex flex-col gap-1.5">
-            <label className="text-[10px] uppercase tracking-wider font-extrabold text-slate-500">Mã xác thực OTP</label>
+            <label className="text-[10px] uppercase tracking-wider font-extrabold text-slate-500">OTP Verification Code</label>
             <div className="relative">
               <input
                 type="text"
@@ -163,12 +163,12 @@ function MockPaymentContent() {
             {isProcessing ? (
               <>
                 <RefreshCw className="w-5 h-5 animate-spin" />
-                <span>Đang xử lý giao dịch...</span>
+                <span>Processing transaction...</span>
               </>
             ) : (
               <>
                 <ShieldCheck className="w-5 h-5" />
-                <span>Xác nhận thanh toán (OTP: 123456)</span>
+                <span>Confirm Payment (OTP: 123456)</span>
               </>
             )}
           </button>
@@ -178,7 +178,7 @@ function MockPaymentContent() {
             disabled={isProcessing}
             className="w-full bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 font-bold py-3.5 px-4 rounded-2xl transition active:scale-98 cursor-pointer disabled:opacity-50 text-xs"
           >
-            Hủy giao dịch / Thanh toán thất bại
+            Cancel Transaction / Fail Payment
           </button>
         </div>
 

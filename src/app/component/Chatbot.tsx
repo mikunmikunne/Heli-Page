@@ -13,10 +13,10 @@ interface Message {
 }
 
 const QUICK_QUESTIONS = [
-  "So sánh 3 dòng ghế Heli?",
-  "Chính sách bảo hành và lắp đặt?",
-  "Giá tiền và tiền cọc 20%?",
-  "Cách thức đặt lịch trải nghiệm?"
+  "Compare 3 Heli models?",
+  "Warranty & installation policy?",
+  "Pricing & 20% deposit?",
+  "How to book showroom trial?"
 ];
 
 // Helper to get formatted current time
@@ -31,7 +31,7 @@ export default function Chatbot() {
   const [messages, setMessages] = useState<Message[]>([
     {
       sender: "bot",
-      text: "Xin chào! Tôi là Trợ lý ảo Heli Care. Tôi có thể giúp gì cho bạn trong việc tìm hiểu các dòng ghế massage thông minh Heli?",
+      text: "Hello! I am Heli Care AI Assistant. How can I help you learn about Heli's smart massage chairs today?",
       time: getFormattedTime()
     }
   ]);
@@ -100,58 +100,58 @@ export default function Chatbot() {
   const generateBotResponse = (query: string): string => {
     const q = query.toLowerCase();
     
-    // Keyword: So sánh / các dòng ghế / dòng ghế / có mấy loại
-    if (q.includes("so sánh") || q.includes("các dòng") || q.includes("có mấy loại") || q.includes("mẫu nào") || q.includes("chọn ghế")) {
-      return `Hiện tại Heli có 3 dòng ghế thông minh đáp ứng mọi nhu cầu:
-1. **Heli Comfort (Standard):** 15,000,000 VND. Loa Bluetooth, nhiệt hồng ngoại, con lăn 2D, 6 chương trình tự động. Phù hợp sử dụng cơ bản.
-2. **Heli Balance (Premium):** 30,000,000 VND. Zero Gravity, con lăn 3D, túi khí toàn thân, kết nối app Heli Health, 10 chương trình tự động.
-3. **Heli Luxe (Ultimate):** 50,000,000 VND. Trọng lực 4D SLS, cảm biến sinh học tự động phát hiện điểm đau, sưởi Graphene, 16 chương trình, điều khiển bằng giọng nói.`;
+    // Keyword: Compare / models / difference
+    if (q.includes("compare") || q.includes("models") || q.includes("difference") || q.includes("so sánh") || q.includes("các dòng")) {
+      return `Heli offers 3 smart massage chair models to suit your needs:
+1. **Heli Comfort (Standard):** 15,000,000 VND. Bluetooth speakers, infrared heat, 2D rollers, 6 auto programs. Ideal for essential relaxation.
+2. **Heli Balance (Premium):** 30,000,000 VND. Zero Gravity, 3D rollers, full-body airbags, Heli Health app connectivity, 10 auto programs.
+3. **Heli Luxe (Ultimate):** 50,000,000 VND. 4D SLS tracks, AI biosensors for pain detection, Graphene heating, 16 programs, voice control.`;
     }
 
-    // Keyword: giá / tiền cọc / bao nhiêu tiền / cọc / thanh toán
-    if (q.includes("giá") || q.includes("tiền cọc") || q.includes("bao nhiêu") || q.includes("cọc") || q.includes("thanh toán")) {
-      return `Chính sách giá bán và tiền cọc đặt trước (20%) của 3 dòng ghế:
-- **Heli Comfort:** Giá 15,000,000 VND - Cọc trước: **3,000,000 VND**.
-- **Heli Balance:** Giá 30,000,000 VND - Cọc trước: **6,000,000 VND**.
-- **Heli Luxe:** Giá 50,000,000 VND - Cọc trước: **10,000,000 VND**.
-Hỗ trợ thanh toán cọc online an toàn qua cổng VNPay Sandbox. Số tiền còn lại sẽ thanh toán khi nhận hàng.`;
+    // Keyword: Price / deposit / payment
+    if (q.includes("price") || q.includes("deposit") || q.includes("cost") || q.includes("pay") || q.includes("giá") || q.includes("tiền cọc")) {
+      return `Pricing and 20% pre-order deposit details:
+- **Heli Comfort:** Price: 15,000,000 VND - Deposit: **3,000,000 VND**.
+- **Heli Balance:** Price: 30,000,000 VND - Deposit: **6,000,000 VND**.
+- **Heli Luxe:** Price: 50,000,000 VND - Deposit: **10,000,000 VND**.
+You can pay the deposit securely online via VNPay Sandbox. The remaining balance is due upon delivery.`;
     }
 
-    // Keyword: bảo hành / lắp đặt / giao hàng / vận chuyển
-    if (q.includes("bảo hành") || q.includes("lắp đặt") || q.includes("giao hàng") || q.includes("vận chuyển")) {
-      return `Chính sách hậu mãi của Heli:
-- **Bảo hành:** 5 năm toàn diện cho mọi bộ phận phần cứng (con lăn, da ghế, cảm biến) và phần mềm. Bảo trì tại nhà trọn đời.
-- **Lắp đặt & Giao hàng:** Miễn phí giao hàng và lắp đặt tận nhà trên toàn quốc. Đội ngũ kỹ thuật hỗ trợ hướng dẫn sử dụng và kết nối app chi tiết.`;
+    // Keyword: Warranty / delivery / shipping
+    if (q.includes("warranty") || q.includes("install") || q.includes("delivery") || q.includes("shipping") || q.includes("bảo hành")) {
+      return `Heli Customer Services & Policies:
+- **Warranty:** 5-year comprehensive warranty on all hardware parts (rollers, leather, sensors) and software. Lifetime in-home maintenance.
+- **Delivery & Setup:** Free shipping and professional installation nationwide. Our technicians will guide you through the app setup and features.`;
     }
 
-    // Keyword: trải nghiệm / thử / showroom / địa chỉ
-    if (q.includes("trải nghiệm") || q.includes("thử") || q.includes("showroom") || q.includes("địa chỉ") || q.includes("đặt lịch")) {
-      return `Bạn có thể đặt lịch trải nghiệm trực tiếp 1-1 tại Showroom Heli:
-- **Showroom HCM:** 7/1 Thành Thái, Quận 10.
-- **Showroom Hà Nội:** 456 Tràng Tiền, Hoàn Kiếm.
-Phí đặt lịch trải nghiệm showroom là **200,000 VND** / phiên 45 phút (được chuyên gia tư vấn sức khỏe và đo chỉ số sinh học miễn phí). Hãy truy cập trang "Book / Buy" để đăng ký nhé!`;
+    // Keyword: Showroom / trial / address / book
+    if (q.includes("showroom") || q.includes("trial") || q.includes("address") || q.includes("book") || q.includes("trải nghiệm") || q.includes("địa chỉ")) {
+      return `You can book a 1-to-1 trial session at our showrooms:
+- **Showroom HCM:** 7/1 Thành Thái, District 10.
+- **Showroom Hanoi:** 456 Tràng Tiền, Hoàn Kiếm.
+The private trial fee is **200,000 VND** / 45-minute session (includes a professional health consultation and bio-metric scans). Please go to the "Book / Buy" page to book!`;
     }
 
     // Keyword: comfort
     if (q.includes("comfort")) {
       const c = CHAIR_MODELS.comfort;
-      return `**${c.name}** là dòng ghế phổ thông với giá bán **${c.priceStr}** (Cọc trước 20%: ${c.depositStr}). Ghế sở hữu các tính năng cơ bản như: ${c.features.join(", ")}. Phù hợp cho việc thư giãn hàng ngày tại gia đình.`;
+      return `**${c.name}** is our standard model priced at **${c.priceStr}** (20% Deposit: ${c.depositStr}). It features essential functions such as: ${c.features.join(", ")}. Perfect for everyday home relaxation.`;
     }
 
     // Keyword: balance
     if (q.includes("balance")) {
       const b = CHAIR_MODELS.balance;
-      return `**${b.name}** là dòng ghế cận cao cấp với giá bán **${b.priceStr}** (Cọc trước 20%: ${b.depositStr}). Ghế tích hợp công nghệ vượt trội: ${b.features.join(", ")}. Đây là lựa chọn được yêu thích nhất của các gia đình hiện đại.`;
+      return `**${b.name}** is our premium model priced at **${b.priceStr}** (20% Deposit: ${b.depositStr}). It integrates advanced features: ${b.features.join(", ")}. It is our most popular choice for modern families.`;
     }
 
     // Keyword: luxe / luxury
     if (q.includes("luxe") || q.includes("luxury")) {
       const l = CHAIR_MODELS.luxe;
-      return `**${l.name}** là dòng ghế thông minh tối tân nhất của Heli có giá **${l.priceStr}** (Cọc trước 20%: ${l.depositStr}). Dòng ghế cao cấp này sở hữu toàn bộ các công nghệ hiện đại nhất: ${l.features.join(", ")}. Đặc biệt là cảm biến AI tự động dò quét huyệt đạo và điểm đau để đưa ra bài massage cá nhân hóa.`;
+      return `**${l.name}** is our ultimate AI massage chair priced at **${l.priceStr}** (20% Deposit: ${l.depositStr}). It offers state-of-the-art tech: ${l.features.join(", ")}. The built-in AI biosensor scans acupoints and automatically customizes a pain-relief program.`;
     }
 
     // Default response
-    return "Cảm ơn câu hỏi của bạn. Tôi là AI hỗ trợ tự động của Heli. Nếu bạn muốn so sánh 3 dòng ghế, hỏi về giá tiền/tiền cọc, chính sách bảo hành, hoặc muốn đặt lịch showroom trải nghiệm, vui lòng chọn câu hỏi gợi ý nhanh hoặc nhập từ khóa liên quan nhé!";
+    return "Thank you for reaching out! I am Heli Care AI Assistant. If you have questions about comparing our 3 models, pricing/deposit, warranty policies, or how to book a showroom trial, please select one of the quick options or type a keyword.";
   };
 
   return (
@@ -248,7 +248,7 @@ Phí đặt lịch trải nghiệm showroom là **200,000 VND** / phiên 45 phú
               type="text"
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
-              placeholder="Nhập câu hỏi của bạn..."
+              placeholder="Type your message..."
               className="flex-grow px-4 py-2 text-sm bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-800 rounded-xl focus:outline-none focus:border-emerald-500 text-slate-900 dark:text-white"
             />
             <button 
