@@ -451,6 +451,49 @@ export const FAQ = () => {
 };
 
 export const SpecsSection = () => {
+  const [activeModel, setActiveModel] = useState<"comfort" | "balance" | "luxe">("comfort");
+
+  const specsData = {
+    comfort: {
+      name: "Heli Comfort (Standard)",
+      price: "15,000,000 VND",
+      deposit: "3,000,000 VND",
+      roller: "2D Fixed Track",
+      scan: "Standard Auto-Height Check",
+      zero: "Single Tilt Position",
+      airbags: "Shoulders & Calves (16 Airbags)",
+      app: "No",
+      voice: "No",
+      warranty: "3 Years Structural",
+    },
+    balance: {
+      name: "Heli Balance (Premium)",
+      price: "30,000,000 VND",
+      deposit: "6,000,000 VND",
+      roller: "3D Intelligent Rollers",
+      scan: "Full Body-Scan Contour Calibration",
+      zero: "Dual Stage Zero-Gravity",
+      airbags: "Full Body Compression (32 Airbags)",
+      app: "Yes (iOS & Android via Bluetooth)",
+      voice: "Yes (Offline Preset Commands)",
+      warranty: "5 Years Full Hardware",
+    },
+    luxe: {
+      name: "Heli Luxe (Ultimate)",
+      price: "50,000,000 VND",
+      deposit: "10,000,000 VND",
+      roller: "4D Dynamic SL-Track Rollers",
+      scan: "Biosensor Pain & Soreness Diagnostics",
+      zero: "Triple Stage Zero-Gravity 4D Linkage",
+      airbags: "Full Body Segmented Compression (48 Airbags)",
+      app: "Yes (iOS & Android, Remote Over-The-Air)",
+      voice: "Yes (Real-time Online Intelligent Voice AI)",
+      warranty: "5 Years Full Hardware + Lifetime Service",
+    }
+  };
+
+  const activeData = specsData[activeModel];
+
   return (
     <section id="specs" className="py-20 bg-slate-50 dark:bg-slate-900/40 scroll-mt-16">
       <div className="max-w-7xl mx-auto px-6">
@@ -462,70 +505,137 @@ export const SpecsSection = () => {
           </p>
         </div>
 
-        <div className="overflow-x-auto rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-xl bg-white dark:bg-slate-900">
-          <table className="w-full text-left border-collapse text-sm">
+        {/* 1. MOBILE VIEW: Tabbed Specifications (hidden on Desktop) */}
+        <div className="block sm:hidden">
+          {/* Tabs Nav */}
+          <div className="flex bg-slate-200/60 dark:bg-slate-800/60 rounded-2xl p-1 gap-1 mb-6">
+            {(["comfort", "balance", "luxe"] as const).map((model) => (
+              <button
+                key={model}
+                onClick={() => setActiveModel(model)}
+                className={`flex-1 py-2.5 text-xs font-bold rounded-xl transition-all ${
+                  activeModel === model
+                    ? "bg-white dark:bg-slate-700 text-emerald-600 dark:text-white shadow-sm"
+                    : "text-slate-500 hover:text-slate-800 dark:hover:text-slate-200"
+                }`}
+              >
+                {model === "comfort" ? "Comfort" : model === "balance" ? "Balance" : "Luxe"}
+              </button>
+            ))}
+          </div>
+
+          {/* Tab Content Card */}
+          <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/80 dark:border-slate-800 p-6 shadow-xl space-y-5">
+            <div className="border-b border-slate-100 dark:border-slate-800/60 pb-4">
+              <h3 className="text-lg font-black text-slate-900 dark:text-white">{activeData.name}</h3>
+              <div className="flex justify-between items-center mt-3">
+                <span className="text-xs text-slate-400 uppercase tracking-wider font-bold">Price</span>
+                <span className="text-emerald-600 dark:text-emerald-400 font-black text-base">{activeData.price}</span>
+              </div>
+            </div>
+
+            <div className="space-y-4 text-xs">
+              <div className="flex justify-between items-start gap-4">
+                <span className="text-slate-400 font-bold shrink-0">Deposit (20%)</span>
+                <span className="text-slate-800 dark:text-slate-200 font-semibold text-right">{activeData.deposit}</span>
+              </div>
+              <div className="flex justify-between items-start gap-4">
+                <span className="text-slate-400 font-bold shrink-0">Roller Mechanism</span>
+                <span className="text-slate-800 dark:text-slate-200 font-semibold text-right">{activeData.roller}</span>
+              </div>
+              <div className="flex justify-between items-start gap-4">
+                <span className="text-slate-400 font-bold shrink-0">AI Body Scan</span>
+                <span className="text-slate-800 dark:text-slate-200 font-semibold text-right">{activeData.scan}</span>
+              </div>
+              <div className="flex justify-between items-start gap-4">
+                <span className="text-slate-400 font-bold shrink-0">Zero Gravity</span>
+                <span className="text-slate-800 dark:text-slate-200 font-semibold text-right">{activeData.zero}</span>
+              </div>
+              <div className="flex justify-between items-start gap-4">
+                <span className="text-slate-400 font-bold shrink-0">Airbag Massage</span>
+                <span className="text-slate-800 dark:text-slate-200 font-semibold text-right">{activeData.airbags}</span>
+              </div>
+              <div className="flex justify-between items-start gap-4">
+                <span className="text-slate-400 font-bold shrink-0">App Support</span>
+                <span className="text-slate-800 dark:text-slate-200 font-semibold text-right">{activeData.app}</span>
+              </div>
+              <div className="flex justify-between items-start gap-4">
+                <span className="text-slate-400 font-bold shrink-0">Voice Control</span>
+                <span className="text-slate-800 dark:text-slate-200 font-semibold text-right">{activeData.voice}</span>
+              </div>
+              <div className="flex justify-between items-start gap-4">
+                <span className="text-slate-400 font-bold shrink-0">Warranty</span>
+                <span className="text-slate-800 dark:text-slate-200 font-semibold text-right">{activeData.warranty}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* 2. DESKTOP VIEW: Full Wide Comparison Table (hidden on Mobile) */}
+        <div className="hidden sm:block overflow-x-auto rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-xl bg-white dark:bg-slate-900">
+          <table className="w-full text-left border-collapse text-sm min-w-[780px]">
             <thead>
               <tr className="bg-slate-50 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-800">
-                <th className="p-6 font-bold text-slate-950 dark:text-white">Feature Specs</th>
-                <th className="p-6 font-bold text-slate-950 dark:text-white">Heli Comfort (Standard)</th>
-                <th className="p-6 font-bold text-slate-950 dark:text-white">Heli Balance (Premium)</th>
-                <th className="p-6 font-bold text-slate-950 dark:text-white">Heli Luxe (Ultimate)</th>
+                <th className="p-4 md:p-6 font-bold text-slate-900 dark:text-slate-100">Feature Specs</th>
+                <th className="p-4 md:p-6 font-bold text-slate-900 dark:text-slate-100">Heli Comfort (Standard)</th>
+                <th className="p-4 md:p-6 font-bold text-slate-900 dark:text-slate-100">Heli Balance (Premium)</th>
+                <th className="p-4 md:p-6 font-bold text-slate-900 dark:text-slate-100">Heli Luxe (Ultimate)</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-200 dark:divide-slate-800 text-slate-700 dark:text-slate-350">
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-800">
               <tr>
-                <td className="p-6 font-bold text-slate-950 dark:text-white">Retail Price</td>
-                <td className="p-6 text-emerald-600 dark:text-emerald-400 font-extrabold">15,000,000 VND</td>
-                <td className="p-6 text-emerald-600 dark:text-emerald-400 font-extrabold">30,000,000 VND</td>
-                <td className="p-6 text-emerald-600 dark:text-emerald-400 font-extrabold">50,000,000 VND</td>
+                <td className="p-4 md:p-6 font-bold text-slate-900 dark:text-slate-200 bg-slate-50/30 dark:bg-slate-800/10">Retail Price</td>
+                <td className="p-4 md:p-6 text-emerald-600 dark:text-emerald-400 font-extrabold whitespace-nowrap">15,000,000 VND</td>
+                <td className="p-4 md:p-6 text-emerald-600 dark:text-emerald-400 font-extrabold whitespace-nowrap">30,000,000 VND</td>
+                <td className="p-4 md:p-6 text-emerald-600 dark:text-emerald-400 font-extrabold whitespace-nowrap">50,000,000 VND</td>
               </tr>
               <tr>
-                <td className="p-6 font-bold text-slate-950 dark:text-white">Deposit Amount (20%)</td>
-                <td className="p-6">3,000,000 VND</td>
-                <td className="p-6">6,000,000 VND</td>
-                <td className="p-6">10,000,000 VND</td>
+                <td className="p-4 md:p-6 font-bold text-slate-900 dark:text-slate-200 bg-slate-50/30 dark:bg-slate-800/10">Deposit Amount (20%)</td>
+                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-350 whitespace-nowrap">3,000,000 VND</td>
+                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-350 whitespace-nowrap">6,000,000 VND</td>
+                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-350 whitespace-nowrap">10,000,000 VND</td>
               </tr>
               <tr>
-                <td className="p-6 font-bold text-slate-950 dark:text-white">Roller Mechanism</td>
-                <td className="p-6">2D Fixed Track</td>
-                <td className="p-6">3D Intelligent Rollers</td>
-                <td className="p-6">4D Dynamic SL-Track Rollers</td>
+                <td className="p-4 md:p-6 font-bold text-slate-900 dark:text-slate-200 bg-slate-50/30 dark:bg-slate-800/10">Roller Mechanism</td>
+                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-350">2D Fixed Track</td>
+                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-350">3D Intelligent Rollers</td>
+                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-350">4D Dynamic SL-Track Rollers</td>
               </tr>
               <tr>
-                <td className="p-6 font-bold text-slate-950 dark:text-white">AI Contours Scanning</td>
-                <td className="p-6">Standard Auto-Height Check</td>
-                <td className="p-6">Full Body-Scan Contour Calibration</td>
-                <td className="p-6">Biosensor Pain & Soreness Diagnostics</td>
+                <td className="p-4 md:p-6 font-bold text-slate-900 dark:text-slate-200 bg-slate-50/30 dark:bg-slate-800/10">AI Contours Scanning</td>
+                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-350">Standard Auto-Height Check</td>
+                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-350">Full Body-Scan Contour Calibration</td>
+                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-350">Biosensor Pain & Soreness Diagnostics</td>
               </tr>
               <tr>
-                <td className="p-6 font-bold text-slate-950 dark:text-white">Zero Gravity Angles</td>
-                <td className="p-6">Single Tilt Position</td>
-                <td className="p-6">Dual Stage Zero-Gravity</td>
-                <td className="p-6">Triple Stage Zero-Gravity 4D Linkage</td>
+                <td className="p-4 md:p-6 font-bold text-slate-900 dark:text-slate-200 bg-slate-50/30 dark:bg-slate-800/10">Zero Gravity Angles</td>
+                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-350">Single Tilt Position</td>
+                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-350">Dual Stage Zero-Gravity</td>
+                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-350">Triple Stage Zero-Gravity 4D Linkage</td>
               </tr>
               <tr>
-                <td className="p-6 font-bold text-slate-950 dark:text-white">Airbag Massage Areas</td>
-                <td className="p-6">Shoulders & Calves (16 Airbags)</td>
-                <td className="p-6">Full Body Compression (32 Airbags)</td>
-                <td className="p-6">Full Body Segmented Compression (48 Airbags)</td>
+                <td className="p-4 md:p-6 font-bold text-slate-900 dark:text-slate-200 bg-slate-50/30 dark:bg-slate-800/10">Airbag Massage Areas</td>
+                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-350">Shoulders & Calves (16 Airbags)</td>
+                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-350">Full Body Compression (32 Airbags)</td>
+                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-350">Full Body Segmented Compression (48 Airbags)</td>
               </tr>
               <tr>
-                <td className="p-6 font-bold text-slate-950 dark:text-white">App Support</td>
-                <td className="p-6">No</td>
-                <td className="p-6">Yes (iOS & Android via Bluetooth)</td>
-                <td className="p-6">Yes (iOS & Android, Remote Over-The-Air)</td>
+                <td className="p-4 md:p-6 font-bold text-slate-900 dark:text-slate-200 bg-slate-50/30 dark:bg-slate-800/10">App Support</td>
+                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-350">No</td>
+                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-350">Yes (iOS & Android via Bluetooth)</td>
+                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-350">Yes (iOS & Android, Remote Over-The-Air)</td>
               </tr>
               <tr>
-                <td className="p-6 font-bold text-slate-950 dark:text-white">Voice Control</td>
-                <td className="p-6">No</td>
-                <td className="p-6">Yes (Offline Preset Commands)</td>
-                <td className="p-6">Yes (Real-time Online Intelligent Voice AI)</td>
+                <td className="p-4 md:p-6 font-bold text-slate-900 dark:text-slate-200 bg-slate-50/30 dark:bg-slate-800/10">Voice Control</td>
+                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-350">No</td>
+                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-350">Yes (Offline Preset Commands)</td>
+                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-350">Yes (Real-time Online Intelligent Voice AI)</td>
               </tr>
               <tr>
-                <td className="p-6 font-bold text-slate-950 dark:text-white">Warranty Duration</td>
-                <td className="p-6">3 Years Structural</td>
-                <td className="p-6">5 Years Full Hardware</td>
-                <td className="p-6">5 Years Full Hardware + Lifetime Service</td>
+                <td className="p-4 md:p-6 font-bold text-slate-900 dark:text-slate-200 bg-slate-50/30 dark:bg-slate-800/10">Warranty Duration</td>
+                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-350">3 Years Structural</td>
+                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-350">5 Years Full Hardware</td>
+                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-350">5 Years Full Hardware + Lifetime Service</td>
               </tr>
             </tbody>
           </table>
