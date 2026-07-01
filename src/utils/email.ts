@@ -100,12 +100,12 @@ export async function sendBookingEmails(data: BookingEmailData): Promise<void> {
         <div class="container">
           <div class="header">
             <h1>Heli Smart Massage Chair</h1>
-            <p>Thank you for requesting a corporate quote</p>
+            <p>Thank you for your booking request</p>
           </div>
           <div class="content">
-            <h2>Request Submitted Successfully!</h2>
+            <h2>Booking Submitted Successfully!</h2>
             <p>Hi <strong>${data.fullName}</strong>,</p>
-            <p>We have successfully received your request for an onsite corporate chair massage event. Below is a summary of the details you submitted:</p>
+            <p>We have successfully received your booking request. Below is a summary of the details you submitted:</p>
             
             <table class="details-table">
               <tr>
@@ -146,7 +146,7 @@ export async function sendBookingEmails(data: BookingEmailData): Promise<void> {
 
             <div class="next-steps">
               <h3>What happens next?</h3>
-              <p>Our corporate wellness coordinator will review your request and get back to you with a customized quote and schedule proposal within <strong>2 business hours</strong>.</p>
+              <p>Our wellness coordinator will review your details and contact you to confirm within <strong>2 business hours</strong>.</p>
             </div>
 
             <p>If you need to make any changes to these details, please reply directly to this email.</p>

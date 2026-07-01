@@ -273,11 +273,11 @@ export const Steps = () => {
             <div className="pt-0 sm:pt-12">
               <div className="relative w-full h-[250px] sm:h-[300px] lg:h-[400px]">
                 <Image 
-                  src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?auto=format&fit=crop&q=80&w=600" 
+                  src="https://images.unsplash.com/photo-1592078615290-033ee584e267?auto=format&fit=crop&q=80&w=600" 
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
                   className="rounded-3xl shadow-lg object-cover"
-                  alt="Heli relaxation experience"
+                  alt="Heli smart relaxation experience"
                 />
               </div>
             </div>
