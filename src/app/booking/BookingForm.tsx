@@ -212,7 +212,7 @@ export default function BookingForm() {
     <form className="space-y-8" onSubmit={handleSubmit(onSubmit)} noValidate onFocusCapture={() => { if (!formInteracted) setFormInteracted(true); }}>
       
       {/* Booking Type Toggle */}
-      <div className="flex bg-slate-100 dark:bg-slate-800/60 rounded-2xl p-1.5">
+      <div className="flex flex-col sm:flex-row bg-slate-100 dark:bg-slate-800/60 rounded-2xl p-1.5 gap-1.5 sm:gap-0">
         <button
           type="button"
           onClick={() => { setBookingType("order"); setValue("bookingType", "order"); }}
