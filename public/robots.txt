@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://onsitechairmassage.com
+
+# Sitemaps
+Sitemap: https://onsitechairmassage.com/sitemap.xml
