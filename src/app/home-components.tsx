@@ -30,14 +30,14 @@ export const Hero = () => {
           </div>
 
           <h1 className="text-5xl lg:text-7xl font-black text-slate-900 dark:text-white leading-[1.1] mb-6 text-balance tracking-tight">
-            The Future of <span className="text-emerald-600 dark:text-emerald-400">Intelligent</span> Relaxation
+            The Future of <span className="text-emerald-700 dark:text-emerald-400">Intelligent</span> Relaxation
           </h1>
           <p className="text-lg lg:text-xl text-slate-600 dark:text-slate-400 mb-10 max-w-xl leading-relaxed">
             Experience therapeutic healing at home with Heli's smart massage chairs. Guided by biosensors to scan posture and locate pain points automatically.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4">
-            <Link href="#products" className="inline-flex items-center justify-center bg-emerald-600 text-white px-8 py-4 rounded-2xl font-bold text-lg shadow-xl shadow-emerald-600/20 hover:bg-emerald-700 hover:shadow-emerald-600/30 transition-all text-center">
+            <Link href="#products" className="inline-flex items-center justify-center bg-emerald-700 text-white px-8 py-4 rounded-2xl font-bold text-lg shadow-xl shadow-emerald-700/20 hover:bg-emerald-800 hover:shadow-emerald-750/30 transition-all text-center">
               Explore Models
             </Link>
             <Link href="/booking" className="inline-flex items-center justify-center border border-slate-300 dark:border-slate-800 text-slate-800 dark:text-slate-200 bg-white dark:bg-slate-900 px-8 py-4 rounded-2xl font-bold text-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-all text-center">
@@ -106,7 +106,7 @@ export const Benefits = () => {
     <section id="products" className="py-20 bg-white dark:bg-slate-950 scroll-mt-16">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
-          <span className="text-emerald-600 dark:text-emerald-400 font-extrabold tracking-widest uppercase text-xs mb-4 block">Heli Smart Series</span>
+          <span className="text-emerald-700 dark:text-emerald-400 font-extrabold tracking-widest uppercase text-xs mb-4 block">Heli Smart Series</span>
           <h2 className="text-4xl lg:text-5xl font-black text-slate-900 dark:text-white tracking-tight">Compare Our Models</h2>
           <p className="text-slate-500 dark:text-slate-400 mt-4 max-w-xl mx-auto">
             Choose the model that fits your lifestyle. Get custom biosensor scanning, smart app support, or advanced graphene heat therapy.
@@ -156,11 +156,11 @@ export const Benefits = () => {
                   <div className="flex justify-between items-start mb-2">
                     <h3 className="text-2xl font-black text-slate-900 dark:text-white">{details.name}</h3>
                   </div>
-                  <p className="text-xs text-slate-400 font-semibold uppercase tracking-wider mb-4">{details.desc}</p>
+                  <p className="text-xs text-slate-650 dark:text-slate-400 font-bold uppercase tracking-wider mb-4">{details.desc}</p>
                   
                   <div className="mb-6">
-                    <p className="text-2xl font-black text-emerald-600 dark:text-emerald-400">{details.priceStr}</p>
-                    <p className="text-xs text-slate-400 font-semibold mt-1">Pre-order deposit 20%: {details.depositStr}</p>
+                    <p className="text-2xl font-black text-emerald-700 dark:text-emerald-400">{details.priceStr}</p>
+                    <p className="text-xs text-slate-500 dark:text-slate-400 font-semibold mt-1">Pre-order deposit 20%: {details.depositStr}</p>
                   </div>
 
                   {/* Features List */}
@@ -178,7 +178,7 @@ export const Benefits = () => {
                 <div className="space-y-3">
                   <button
                     onClick={() => handleProductAction(id, "cart")}
-                    className="w-full flex items-center justify-center gap-2 bg-emerald-600 text-white py-3.5 rounded-xl font-bold hover:bg-emerald-700 transition active:scale-98 shadow-md cursor-pointer"
+                    className="w-full flex items-center justify-center gap-2 bg-emerald-700 text-white py-3.5 rounded-xl font-bold hover:bg-emerald-800 transition active:scale-98 shadow-md cursor-pointer"
                   >
                     <ShoppingCart className="w-4 h-4" />
                     <span>Add to Cart</span>
@@ -250,7 +250,7 @@ export const Steps = () => {
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col lg:flex-row gap-16 items-center">
           <div className="w-full lg:w-1/2">
-            <span className="text-emerald-600 dark:text-emerald-400 font-extrabold tracking-widest uppercase text-xs mb-4 block">Process</span>
+            <span className="text-emerald-700 dark:text-emerald-400 font-extrabold tracking-widest uppercase text-xs mb-4 block">Process</span>
             <h2 className="text-4xl text-slate-900 dark:text-white lg:text-5xl font-black mb-8 leading-tight tracking-tight">Getting Your Heli</h2>
             <p className="text-lg text-slate-600 dark:text-slate-400 mb-12">We guarantee a seamless journey from model customization to doorstep white-glove installation.</p>
             
@@ -325,7 +325,7 @@ export const Testimonials = () => {
     <section className="py-20 bg-white dark:bg-slate-950">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
-          <span className="text-emerald-600 dark:text-emerald-400 font-extrabold tracking-widest uppercase text-xs mb-4 block">Testimonials</span>
+          <span className="text-emerald-700 dark:text-emerald-400 font-extrabold tracking-widest uppercase text-xs mb-4 block">Testimonials</span>
           <h2 className="text-4xl font-black text-slate-900 dark:text-white tracking-tight">What Owners Say</h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -403,7 +403,7 @@ export const FAQ = () => {
     <section className="py-20 bg-white dark:bg-slate-950">
       <div className="max-w-3xl mx-auto px-6">
         <div className="text-center mb-12">
-          <span className="text-emerald-600 dark:text-emerald-400 font-extrabold tracking-widest uppercase text-xs mb-4 block">FAQ</span>
+          <span className="text-emerald-700 dark:text-emerald-400 font-extrabold tracking-widest uppercase text-xs mb-4 block">FAQ</span>
           <h2 className="text-4xl font-black text-slate-900 dark:text-white mb-4 tracking-tight">Questions & Answers</h2>
           <p className="text-slate-600 dark:text-slate-400">Everything you need to know about the Heli Smart Massage Chair experience.</p>
         </div>
@@ -499,7 +499,7 @@ export const SpecsSection = () => {
     <section id="specs" className="py-20 bg-slate-50 dark:bg-slate-900/40 scroll-mt-16">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-12">
-          <span className="text-emerald-600 dark:text-emerald-400 font-extrabold tracking-widest uppercase text-xs mb-4 block">Specifications</span>
+          <span className="text-emerald-700 dark:text-emerald-400 font-extrabold tracking-widest uppercase text-xs mb-4 block">Specifications</span>
           <h2 className="text-4xl font-black text-slate-900 dark:text-white tracking-tight">Technical Comparison</h2>
           <p className="text-slate-500 dark:text-slate-400 mt-3 max-w-xl mx-auto text-sm">
             Review detailed specifications of the Comfort, Balance, and Luxe models to find the perfect therapeutic match.
@@ -516,8 +516,8 @@ export const SpecsSection = () => {
                 onClick={() => setActiveModel(model)}
                 className={`flex-1 py-2.5 text-xs font-bold rounded-xl transition-all ${
                   activeModel === model
-                    ? "bg-white dark:bg-slate-700 text-emerald-600 dark:text-white shadow-sm"
-                    : "text-slate-500 hover:text-slate-800 dark:hover:text-slate-200"
+                    ? "bg-white dark:bg-slate-700 text-emerald-700 dark:text-white shadow-sm"
+                    : "text-slate-600 hover:text-slate-800 dark:hover:text-slate-200"
                 }`}
               >
                 {model === "comfort" ? "Comfort" : model === "balance" ? "Balance" : "Luxe"}
@@ -531,7 +531,7 @@ export const SpecsSection = () => {
               <h3 className="text-lg font-black text-slate-900 dark:text-white">{activeData.name}</h3>
               <div className="flex justify-between items-center mt-3">
                 <span className="text-xs text-slate-900 dark:text-slate-100 uppercase tracking-wider font-extrabold">Price</span>
-                <span className="text-emerald-600 dark:text-emerald-400 font-black text-base">{activeData.price}</span>
+                <span className="text-emerald-700 dark:text-emerald-400 font-black text-base">{activeData.price}</span>
               </div>
             </div>
 
@@ -586,9 +586,9 @@ export const SpecsSection = () => {
             <tbody className="divide-y divide-slate-200 dark:divide-slate-800">
               <tr>
                 <td className="p-4 md:p-6 font-bold text-slate-900 dark:text-slate-200 bg-slate-50/30 dark:bg-slate-800/10">Retail Price</td>
-                <td className="p-4 md:p-6 text-emerald-600 dark:text-emerald-400 font-extrabold whitespace-nowrap">15,000,000 VND</td>
-                <td className="p-4 md:p-6 text-emerald-600 dark:text-emerald-400 font-extrabold whitespace-nowrap">30,000,000 VND</td>
-                <td className="p-4 md:p-6 text-emerald-600 dark:text-emerald-400 font-extrabold whitespace-nowrap">50,000,000 VND</td>
+                <td className="p-4 md:p-6 text-emerald-700 dark:text-emerald-400 font-extrabold whitespace-nowrap">15,000,000 VND</td>
+                <td className="p-4 md:p-6 text-emerald-700 dark:text-emerald-400 font-extrabold whitespace-nowrap">30,000,000 VND</td>
+                <td className="p-4 md:p-6 text-emerald-700 dark:text-emerald-400 font-extrabold whitespace-nowrap">50,000,000 VND</td>
               </tr>
               <tr>
                 <td className="p-4 md:p-6 font-bold text-slate-900 dark:text-slate-200 bg-slate-50/30 dark:bg-slate-800/10">Deposit Amount (20%)</td>
@@ -692,7 +692,7 @@ export const NewsletterSection = () => {
   return (
     <section className="py-20 bg-white dark:bg-slate-950 border-t border-slate-100 dark:border-slate-900">
       <div className="max-w-4xl mx-auto px-6 text-center">
-        <span className="text-emerald-600 dark:text-emerald-400 font-extrabold tracking-widest uppercase text-xs mb-4 block">Newsletter</span>
+        <span className="text-emerald-700 dark:text-emerald-400 font-extrabold tracking-widest uppercase text-xs mb-4 block">Newsletter</span>
         <h2 className="text-3xl lg:text-4xl font-black text-slate-900 dark:text-white tracking-tight mb-4">
           Stay Informed on Wellness Tech
         </h2>
@@ -712,7 +712,7 @@ export const NewsletterSection = () => {
           />
           <button
             type="submit"
-            className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-8 py-4 rounded-2xl transition shadow-lg disabled:opacity-50 text-sm cursor-pointer shrink-0"
+            className="bg-emerald-700 hover:bg-emerald-800 text-white font-bold px-8 py-4 rounded-2xl transition shadow-lg disabled:opacity-50 text-sm cursor-pointer shrink-0"
             disabled={loading}
           >
             {loading ? "Đang gửi..." : "Đăng ký nhận tin"}

@@ -190,6 +190,7 @@ export default function Header() {
             ) : (
               <Link
                 href="/login"
+                aria-label="Sign In"
                 className="bg-emerald-600 hover:bg-emerald-700 text-white p-2.5 sm:px-5 sm:py-2 rounded-full font-bold text-xs shadow-md transition-all active:scale-95 flex items-center gap-1.5 shrink-0"
               >
                 <User className="w-4 h-4 sm:w-3.5 sm:h-3.5" />
@@ -227,7 +228,7 @@ export default function Header() {
               <ShoppingCart className="w-5 h-5 text-emerald-600" />
               <span>Shopping Cart</span>
             </h3>
-            <button onClick={() => setIsCartOpen(false)} className="p-1 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer">
+            <button onClick={() => setIsCartOpen(false)} aria-label="Close cart drawer" className="p-1 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer">
               <X className="w-5 h-5 text-slate-500" />
             </button>
           </div>
@@ -259,11 +260,11 @@ export default function Header() {
                       
                       <div className="flex items-center justify-between mt-3">
                         <div className="flex items-center gap-2 border border-slate-200 dark:border-slate-700 rounded-md py-0.5 px-2 bg-white dark:bg-slate-900">
-                          <button onClick={() => updateCartQuantity(item.chairId, item.quantity - 1)} className="p-1 hover:bg-slate-100 dark:hover:bg-slate-800 rounded">
+                          <button onClick={() => updateCartQuantity(item.chairId, item.quantity - 1)} aria-label="Decrease quantity" className="p-1 hover:bg-slate-100 dark:hover:bg-slate-800 rounded">
                             <Minus className="w-3 h-3 text-slate-500" />
                           </button>
                           <span className="text-sm font-bold text-slate-800 dark:text-slate-200 w-5 text-center">{item.quantity}</span>
-                          <button onClick={() => updateCartQuantity(item.chairId, item.quantity + 1)} className="p-1 hover:bg-slate-100 dark:hover:bg-slate-800 rounded">
+                          <button onClick={() => updateCartQuantity(item.chairId, item.quantity + 1)} aria-label="Increase quantity" className="p-1 hover:bg-slate-100 dark:hover:bg-slate-800 rounded">
                             <Plus className="w-3 h-3 text-slate-500" />
                           </button>
                         </div>
@@ -308,7 +309,7 @@ export default function Header() {
               <Heart className="w-5 h-5 text-rose-500 fill-rose-500" />
               <span>My Favorites</span>
             </h3>
-            <button onClick={() => setIsFavsOpen(false)} className="p-1 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer">
+            <button onClick={() => setIsFavsOpen(false)} aria-label="Close favorites drawer" className="p-1 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer">
               <X className="w-5 h-5 text-slate-500" />
             </button>
           </div>

@@ -69,7 +69,7 @@ export default function Footer() {
           <h3 className="text-gray-700 dark:text-gray-300 font-bold mb-6 text-sm uppercase tracking-wider">Contact</h3>
           <ul className="space-y-4">
             <li className="text-slate-500 dark:text-slate-400 text-sm">
-              <span className="font-semibold block text-[10px] text-slate-400 dark:text-slate-500 mb-1 uppercase tracking-wider">Email:</span>
+              <span className="font-semibold block text-[10px] text-slate-500 dark:text-slate-400 mb-1 uppercase tracking-wider">Email:</span>
               <a
                 href="mailto:mikun.creatory@gmail.com"
                 className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors font-bold text-sm"
@@ -78,7 +78,7 @@ export default function Footer() {
               </a>
             </li>
             <li className="text-slate-500 dark:text-slate-400 text-sm">
-              <span className="font-semibold block text-[10px] text-slate-400 dark:text-slate-500 mb-1 uppercase tracking-wider">Hotline:</span>
+              <span className="font-semibold block text-[10px] text-slate-500 dark:text-slate-400 mb-1 uppercase tracking-wider">Hotline:</span>
               <a
                 href="tel:+84374716789"
                 className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors font-bold"
@@ -87,7 +87,7 @@ export default function Footer() {
               </a>
             </li>
             <li className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">
-              <span className="font-semibold block text-[10px] text-slate-400 dark:text-slate-500 mb-1 uppercase tracking-wider">Showroom HCM:</span>
+              <span className="font-semibold block text-[10px] text-slate-500 dark:text-slate-400 mb-1 uppercase tracking-wider">Showroom HCM:</span>
               <a
                 href="https://maps.app.goo.gl/Qtyguk6nqMRt6J2Q6"
                 target="_blank"
