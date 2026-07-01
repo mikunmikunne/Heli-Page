@@ -94,39 +94,6 @@ export default function BehaviorTracker() {
     };
   }, []);
 
-  if (toasts.length === 0) return null;
-
-  return (
-    <div className="fixed bottom-6 left-6 z-100 flex flex-col gap-3 pointer-events-none max-w-sm">
-      {toasts.map((toast) => (
-        <div
-          key={toast.id}
-          className="flex items-center gap-3 px-5 py-4 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border border-emerald-500/30 rounded-2xl shadow-xl shadow-emerald-500/5 animate-slideIn pointer-events-auto transition-all duration-300"
-        >
-          <div className="flex-shrink-0 w-8 h-8 rounded-full bg-emerald-100 dark:bg-emerald-950/60 flex items-center justify-center text-emerald-700 dark:text-emerald-400">
-            {toast.type === "scroll" ? (
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-              </svg>
-            ) : (
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15.042 21.672 13.684 16.6m0 0-2.51 2.225.569-9.47 5.227 7.917-3.286-.672ZM12 2.25V4.5m5.303-.053-1.593 1.593M21.75 12h-2.25m-.053 5.303-1.593-1.593M12 19.5v2.25m-5.303-.053 1.593-1.593M2.25 12h2.25m.053-5.303 1.593 1.593" />
-              </svg>
-            )}
-          </div>
-          <div>
-            <p className="text-[10px] uppercase font-extrabold tracking-widest text-emerald-600 dark:text-emerald-400">
-              {toast.type === "scroll" ? "Scroll Tracking" : "Click Tracking"}
-            </p>
-            <p className="text-sm font-bold text-slate-800 dark:text-slate-200">
-              {toast.label}
-            </p>
-          </div>
-          <span className="text-[10px] text-slate-400 dark:text-slate-500 font-semibold ml-auto shrink-0 self-end">
-            {toast.timestamp}
-          </span>
-        </div>
-      ))}
-    </div>
-  );
+  // Render nothing visually to users (runs completely silently in the background while logging to database & console)
+  return null;
 }

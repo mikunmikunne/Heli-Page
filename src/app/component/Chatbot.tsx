@@ -198,7 +198,7 @@ Phí đặt lịch trải nghiệm showroom là **200,000 VND** / phiên 45 phú
           </div>
 
           {/* Quick options chips */}
-          <div className="p-3 bg-white dark:bg-slate-900 border-t border-slate-150 dark:border-slate-850 flex gap-2 overflow-x-auto scrollbar-none shrink-0">
+          <div className="p-3 bg-white dark:bg-slate-900 border-t border-slate-150 dark:border-slate-850 flex gap-2 overflow-x-auto custom-scrollbar pb-1.5 shrink-0">
             {QUICK_QUESTIONS.map((q, idx) => (
               <button
                 key={idx}
