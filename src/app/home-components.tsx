@@ -529,43 +529,43 @@ export const SpecsSection = () => {
             <div className="border-b border-slate-100 dark:border-slate-800/60 pb-4">
               <h3 className="text-lg font-black text-slate-900 dark:text-white">{activeData.name}</h3>
               <div className="flex justify-between items-center mt-3">
-                <span className="text-xs text-slate-400 uppercase tracking-wider font-bold">Price</span>
+                <span className="text-xs text-slate-900 dark:text-slate-100 uppercase tracking-wider font-extrabold">Price</span>
                 <span className="text-emerald-600 dark:text-emerald-400 font-black text-base">{activeData.price}</span>
               </div>
             </div>
 
             <div className="space-y-4 text-xs">
               <div className="flex justify-between items-start gap-4">
-                <span className="text-slate-400 font-bold shrink-0">Deposit (20%)</span>
-                <span className="text-slate-800 dark:text-slate-200 font-semibold text-right">{activeData.deposit}</span>
+                <span className="text-slate-900 dark:text-slate-100 font-bold shrink-0">Deposit (20%)</span>
+                <span className="text-slate-500 dark:text-slate-400 font-medium text-right">{activeData.deposit}</span>
               </div>
               <div className="flex justify-between items-start gap-4">
-                <span className="text-slate-400 font-bold shrink-0">Roller Mechanism</span>
-                <span className="text-slate-800 dark:text-slate-200 font-semibold text-right">{activeData.roller}</span>
+                <span className="text-slate-900 dark:text-slate-100 font-bold shrink-0">Roller Mechanism</span>
+                <span className="text-slate-500 dark:text-slate-400 font-medium text-right">{activeData.roller}</span>
               </div>
               <div className="flex justify-between items-start gap-4">
-                <span className="text-slate-400 font-bold shrink-0">AI Body Scan</span>
-                <span className="text-slate-800 dark:text-slate-200 font-semibold text-right">{activeData.scan}</span>
+                <span className="text-slate-900 dark:text-slate-100 font-bold shrink-0">AI Body Scan</span>
+                <span className="text-slate-500 dark:text-slate-400 font-medium text-right">{activeData.scan}</span>
               </div>
               <div className="flex justify-between items-start gap-4">
-                <span className="text-slate-400 font-bold shrink-0">Zero Gravity</span>
-                <span className="text-slate-800 dark:text-slate-200 font-semibold text-right">{activeData.zero}</span>
+                <span className="text-slate-900 dark:text-slate-100 font-bold shrink-0">Zero Gravity</span>
+                <span className="text-slate-500 dark:text-slate-400 font-medium text-right">{activeData.zero}</span>
               </div>
               <div className="flex justify-between items-start gap-4">
-                <span className="text-slate-400 font-bold shrink-0">Airbag Massage</span>
-                <span className="text-slate-800 dark:text-slate-200 font-semibold text-right">{activeData.airbags}</span>
+                <span className="text-slate-900 dark:text-slate-100 font-bold shrink-0">Airbag Massage</span>
+                <span className="text-slate-500 dark:text-slate-400 font-medium text-right">{activeData.airbags}</span>
               </div>
               <div className="flex justify-between items-start gap-4">
-                <span className="text-slate-400 font-bold shrink-0">App Support</span>
-                <span className="text-slate-800 dark:text-slate-200 font-semibold text-right">{activeData.app}</span>
+                <span className="text-slate-900 dark:text-slate-100 font-bold shrink-0">App Support</span>
+                <span className="text-slate-500 dark:text-slate-400 font-medium text-right">{activeData.app}</span>
               </div>
               <div className="flex justify-between items-start gap-4">
-                <span className="text-slate-400 font-bold shrink-0">Voice Control</span>
-                <span className="text-slate-800 dark:text-slate-200 font-semibold text-right">{activeData.voice}</span>
+                <span className="text-slate-900 dark:text-slate-100 font-bold shrink-0">Voice Control</span>
+                <span className="text-slate-500 dark:text-slate-400 font-medium text-right">{activeData.voice}</span>
               </div>
               <div className="flex justify-between items-start gap-4">
-                <span className="text-slate-400 font-bold shrink-0">Warranty</span>
-                <span className="text-slate-800 dark:text-slate-200 font-semibold text-right">{activeData.warranty}</span>
+                <span className="text-slate-900 dark:text-slate-100 font-bold shrink-0">Warranty</span>
+                <span className="text-slate-500 dark:text-slate-400 font-medium text-right">{activeData.warranty}</span>
               </div>
             </div>
           </div>
@@ -591,51 +591,51 @@ export const SpecsSection = () => {
               </tr>
               <tr>
                 <td className="p-4 md:p-6 font-bold text-slate-900 dark:text-slate-200 bg-slate-50/30 dark:bg-slate-800/10">Deposit Amount (20%)</td>
-                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-350 whitespace-nowrap">3,000,000 VND</td>
-                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-350 whitespace-nowrap">6,000,000 VND</td>
-                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-350 whitespace-nowrap">10,000,000 VND</td>
+                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-300 whitespace-nowrap">3,000,000 VND</td>
+                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-300 whitespace-nowrap">6,000,000 VND</td>
+                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-300 whitespace-nowrap">10,000,000 VND</td>
               </tr>
               <tr>
                 <td className="p-4 md:p-6 font-bold text-slate-900 dark:text-slate-200 bg-slate-50/30 dark:bg-slate-800/10">Roller Mechanism</td>
-                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-350">2D Fixed Track</td>
-                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-350">3D Intelligent Rollers</td>
-                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-350">4D Dynamic SL-Track Rollers</td>
+                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-300">2D Fixed Track</td>
+                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-300">3D Intelligent Rollers</td>
+                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-300">4D Dynamic SL-Track Rollers</td>
               </tr>
               <tr>
                 <td className="p-4 md:p-6 font-bold text-slate-900 dark:text-slate-200 bg-slate-50/30 dark:bg-slate-800/10">AI Contours Scanning</td>
-                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-350">Standard Auto-Height Check</td>
-                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-350">Full Body-Scan Contour Calibration</td>
-                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-350">Biosensor Pain & Soreness Diagnostics</td>
+                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-300">Standard Auto-Height Check</td>
+                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-300">Full Body-Scan Contour Calibration</td>
+                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-300">Biosensor Pain & Soreness Diagnostics</td>
               </tr>
               <tr>
                 <td className="p-4 md:p-6 font-bold text-slate-900 dark:text-slate-200 bg-slate-50/30 dark:bg-slate-800/10">Zero Gravity Angles</td>
-                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-350">Single Tilt Position</td>
-                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-350">Dual Stage Zero-Gravity</td>
-                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-350">Triple Stage Zero-Gravity 4D Linkage</td>
+                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-300">Single Tilt Position</td>
+                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-300">Dual Stage Zero-Gravity</td>
+                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-300">Triple Stage Zero-Gravity 4D Linkage</td>
               </tr>
               <tr>
                 <td className="p-4 md:p-6 font-bold text-slate-900 dark:text-slate-200 bg-slate-50/30 dark:bg-slate-800/10">Airbag Massage Areas</td>
-                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-350">Shoulders & Calves (16 Airbags)</td>
-                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-350">Full Body Compression (32 Airbags)</td>
-                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-350">Full Body Segmented Compression (48 Airbags)</td>
+                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-300">Shoulders & Calves (16 Airbags)</td>
+                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-300">Full Body Compression (32 Airbags)</td>
+                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-300">Full Body Segmented Compression (48 Airbags)</td>
               </tr>
               <tr>
                 <td className="p-4 md:p-6 font-bold text-slate-900 dark:text-slate-200 bg-slate-50/30 dark:bg-slate-800/10">App Support</td>
-                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-350">No</td>
-                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-350">Yes (iOS & Android via Bluetooth)</td>
-                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-350">Yes (iOS & Android, Remote Over-The-Air)</td>
+                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-300">No</td>
+                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-300">Yes (iOS & Android via Bluetooth)</td>
+                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-300">Yes (iOS & Android, Remote Over-The-Air)</td>
               </tr>
               <tr>
                 <td className="p-4 md:p-6 font-bold text-slate-900 dark:text-slate-200 bg-slate-50/30 dark:bg-slate-800/10">Voice Control</td>
-                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-350">No</td>
-                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-350">Yes (Offline Preset Commands)</td>
-                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-350">Yes (Real-time Online Intelligent Voice AI)</td>
+                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-300">No</td>
+                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-300">Yes (Offline Preset Commands)</td>
+                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-300">Yes (Real-time Online Intelligent Voice AI)</td>
               </tr>
               <tr>
                 <td className="p-4 md:p-6 font-bold text-slate-900 dark:text-slate-200 bg-slate-50/30 dark:bg-slate-800/10">Warranty Duration</td>
-                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-350">3 Years Structural</td>
-                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-350">5 Years Full Hardware</td>
-                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-350">5 Years Full Hardware + Lifetime Service</td>
+                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-300">3 Years Structural</td>
+                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-300">5 Years Full Hardware</td>
+                <td className="p-4 md:p-6 text-slate-600 dark:text-slate-300">5 Years Full Hardware + Lifetime Service</td>
               </tr>
             </tbody>
           </table>
