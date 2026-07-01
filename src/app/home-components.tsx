@@ -73,7 +73,7 @@ export const Hero = () => {
           <div className="absolute -top-10 -right-10 w-96 h-96 bg-emerald-200/20 dark:bg-emerald-800/10 rounded-full blur-[100px] pointer-events-none" />
           <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl aspect-[4/3] sm:aspect-[16/11]">
             <Image 
-              src="https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&q=80&w=800" 
+              src="/menu.jpeg" 
               alt="Premium Heli Smart Massage Chair"
               fill
               className="object-cover"
