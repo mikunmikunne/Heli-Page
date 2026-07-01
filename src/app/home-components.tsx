@@ -142,12 +142,13 @@ export const Benefits = () => {
 
                 <div>
                   {/* Image */}
-                  <div className="relative w-full h-56 rounded-2xl overflow-hidden mb-6 bg-slate-100">
+                  <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden mb-6 bg-slate-100 dark:bg-slate-800/40 flex items-center justify-center p-4">
                     <Image 
                       src={details.image} 
                       alt={details.name} 
                       fill 
-                      className="object-cover group-hover:scale-105 transition-transform duration-700" 
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      className="object-contain p-2 group-hover:scale-105 transition-transform duration-700" 
                     />
                   </div>
 

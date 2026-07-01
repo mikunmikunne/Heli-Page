@@ -280,7 +280,6 @@ export default function AdminPage() {
           
           if (!error) {
             setBookings(bookings.map((b) => (b.id === id ? { ...b, details: newDetails } : b)));
-            alert("Lưu ghi chú thành công!");
           } else {
             console.error(error);
             alert(`Lỗi khi lưu ghi chú: ${error.message}. Hãy kiểm tra lại phân quyền (RLS) của bảng bookings trong Supabase!`);
@@ -298,7 +297,6 @@ export default function AdminPage() {
           
           if (!error) {
             setContacts(contacts.map((c) => (c.id === id ? { ...c, message: newMsg } : c)));
-            alert("Lưu ghi chú thành công!");
           } else {
             console.error(error);
             alert(`Lỗi khi lưu ghi chú: ${error.message}. Hãy kiểm tra lại phân quyền (RLS) của bảng contacts trong Supabase!`);
@@ -743,20 +741,16 @@ export default function AdminPage() {
                                 type="text"
                                 value={noteVal}
                                 onChange={(e) => setNotesState({ ...notesState, [b.id]: e.target.value })}
+                                onKeyDown={(e) => {
+                                  if (e.key === "Enter") {
+                                    handleSaveNote(b.id, "booking");
+                                    (e.target as HTMLInputElement).blur();
+                                  }
+                                }}
+                                onBlur={() => handleSaveNote(b.id, "booking")}
                                 placeholder="Ghi chú đơn hàng..."
                                 className="w-full px-3 py-1.5 bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-800 rounded-lg text-slate-900 dark:text-white text-xs focus:outline-none focus:border-emerald-500"
                               />
-                              <button
-                                onClick={() => handleSaveNote(b.id, "booking")}
-                                className="p-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg transition shrink-0 cursor-pointer flex items-center justify-center w-8 h-8 border-none"
-                                aria-label="Save note"
-                              >
-                                {savingRowId === b.id ? (
-                                  <div className="animate-spin rounded-full h-3.5 w-3.5 border-b-2 border-white"></div>
-                                ) : (
-                                  <Save className="w-3.5 h-3.5" />
-                                )}
-                              </button>
                             </div>
                           </td>
                           <td className="p-5 text-center">
@@ -831,20 +825,16 @@ export default function AdminPage() {
                                 type="text"
                                 value={noteVal}
                                 onChange={(e) => setNotesState({ ...notesState, [c.id]: e.target.value })}
+                                onKeyDown={(e) => {
+                                  if (e.key === "Enter") {
+                                    handleSaveNote(c.id, "contact");
+                                    (e.target as HTMLInputElement).blur();
+                                  }
+                                }}
+                                onBlur={() => handleSaveNote(c.id, "contact")}
                                 placeholder="Ghi chú tin nhắn..."
                                 className="w-full min-w-[180px] px-3 py-1.5 bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-800 rounded-lg text-slate-900 dark:text-white text-xs focus:outline-none focus:border-emerald-500"
                               />
-                              <button
-                                onClick={() => handleSaveNote(c.id, "contact")}
-                                className="p-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg transition shrink-0 cursor-pointer flex items-center justify-center w-8 h-8 border-none"
-                                aria-label="Save note"
-                              >
-                                {savingRowId === c.id ? (
-                                  <div className="animate-spin rounded-full h-3.5 w-3.5 border-b-2 border-white"></div>
-                                ) : (
-                                  <Save className="w-3.5 h-3.5" />
-                                )}
-                              </button>
                             </div>
                           </td>
                           <td className="p-5 text-center">
@@ -927,20 +917,16 @@ export default function AdminPage() {
                                 type="text"
                                 value={noteVal}
                                 onChange={(e) => setNotesState({ ...notesState, [s.id]: e.target.value })}
+                                onKeyDown={(e) => {
+                                  if (e.key === "Enter") {
+                                    handleSaveNote(s.id, "contact");
+                                    (e.target as HTMLInputElement).blur();
+                                  }
+                                }}
+                                onBlur={() => handleSaveNote(s.id, "contact")}
                                 placeholder="Ghi chú email..."
                                 className="w-full min-w-[180px] px-3 py-1.5 bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-800 rounded-lg text-slate-900 dark:text-white text-xs focus:outline-none focus:border-emerald-500"
                               />
-                              <button
-                                onClick={() => handleSaveNote(s.id, "contact")}
-                                className="p-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg transition shrink-0 cursor-pointer flex items-center justify-center w-8 h-8 border-none"
-                                aria-label="Save note"
-                              >
-                                {savingRowId === s.id ? (
-                                  <div className="animate-spin rounded-full h-3.5 w-3.5 border-b-2 border-white"></div>
-                                ) : (
-                                  <Save className="w-3.5 h-3.5" />
-                                )}
-                              </button>
                             </div>
                           </td>
                           <td className="p-5 text-center">
