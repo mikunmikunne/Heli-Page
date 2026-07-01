@@ -39,18 +39,12 @@ function SuccessContent() {
         </div>
       </div>
 
-      <div className="flex flex-col sm:flex-row gap-3">
+      <div className="w-full">
         <Link
           href="/"
-          className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 px-4 rounded-xl shadow-md transition active:scale-98 text-sm"
+          className="block w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 px-4 rounded-xl shadow-md transition active:scale-98 text-sm text-center"
         >
           Back to Homepage
-        </Link>
-        <Link
-          href="/specs"
-          className="flex-1 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-850 font-bold py-3.5 px-4 rounded-xl transition active:scale-98 text-sm"
-        >
-          Specs Detail
         </Link>
       </div>
     </div>
