@@ -476,6 +476,7 @@ export default function AdminPage() {
 
   const pendingBookingsCount = bookings.filter((b) => parseStatus(b.details).toLowerCase() === "pending").length;
   const unprocessedMessagesCount = supportMessages.filter((c) => parseStatus(c.message, "Unprocessed").toLowerCase() === "unprocessed").length;
+  const unprocessedSubscribersCount = newsletterSubscribers.filter((s) => parseStatus(s.message, "Unprocessed").toLowerCase() === "unprocessed").length;
 
   if (authLoading || !user || !isAdmin) {
     return (
@@ -562,7 +563,7 @@ export default function AdminPage() {
               <h3 className="text-2xl font-black text-slate-900 dark:text-white mt-1">{supportMessages.length} Msg / {newsletterSubscribers.length} Sub</h3>
               <p className="text-[10px] text-rose-500 font-semibold flex items-center gap-1 mt-1">
                 <ShieldAlert className="w-3 h-3" />
-                <span>{unprocessedMessagesCount} unprocessed messages</span>
+                <span>{unprocessedMessagesCount} Msg & {unprocessedSubscribersCount} Sub unprocessed</span>
               </p>
             </div>
             <div className="w-12 h-12 bg-rose-50 dark:bg-rose-950/40 text-rose-500 rounded-2xl flex items-center justify-center">
@@ -594,7 +595,7 @@ export default function AdminPage() {
             }`}
           >
             <MessageSquare className="w-3.5 h-3.5" />
-            <span>Support Messages ({supportMessages.length})</span>
+            <span>Support Messages ({unprocessedMessagesCount}/{supportMessages.length})</span>
           </button>
           <button
             onClick={() => { setActiveTab("subscribers"); setSearchQuery(""); }}
@@ -605,7 +606,7 @@ export default function AdminPage() {
             }`}
           >
             <Mail className="w-3.5 h-3.5" />
-            <span>Newsletter Emails ({newsletterSubscribers.length})</span>
+            <span>Newsletter Emails ({unprocessedSubscribersCount}/{newsletterSubscribers.length})</span>
           </button>
         </div>
 
@@ -881,14 +882,14 @@ export default function AdminPage() {
                       <th className="p-5 font-semibold text-slate-400">#</th>
                       <th className="p-5">Email Address</th>
                       <th className="p-5">Submitted At (Date & Time)</th>
-                      <th className="p-5">Status</th>
+                       <th className="p-5 min-w-[160px]">Status</th>
                       <th className="p-5 w-72 min-w-[240px]">Admin Note</th>
                       <th className="p-5 text-center">Action</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60 text-slate-700 dark:text-slate-300">
                     {filteredSubscribers.map((s, index) => {
-                      const status = parseStatus(s.message);
+                      const status = parseStatus(s.message, "Unprocessed");
                       const noteVal = notesState[s.id] ?? "";
                       
                       return (
@@ -898,12 +899,12 @@ export default function AdminPage() {
                           <td className="p-5 font-semibold text-slate-700 dark:text-slate-200">
                             {formatDateTime(s.created_at)}
                           </td>
-                          <td className="p-5">
-                            <div className="relative flex items-center">
+                          <td className="p-5 min-w-[160px]">
+                            <div className="relative flex items-center w-36">
                               <select
                                 value={status === "Replied" ? "Replied" : "Unprocessed"}
                                 onChange={(e) => handleStatusChange(s.id, e.target.value, "contact")}
-                                className="w-36 pl-3 pr-8 py-1.5 bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-800 rounded-lg text-slate-900 dark:text-white font-bold text-xs focus:outline-none focus:border-emerald-500 appearance-none cursor-pointer"
+                                className="w-full pl-3 pr-8 py-1.5 bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-800 rounded-lg text-slate-900 dark:text-white font-bold text-xs focus:outline-none focus:border-emerald-500 appearance-none cursor-pointer"
                               >
                                 <option value="Unprocessed">Unprocessed</option>
                                 <option value="Replied">Replied</option>
