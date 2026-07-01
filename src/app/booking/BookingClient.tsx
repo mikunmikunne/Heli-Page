@@ -35,7 +35,7 @@ export default function BookingClient() {
             initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2 }}
-            className="lg:col-span-8 bg-white dark:bg-gray-900 border border-gray-100 dark:border-white/5 p-8 md:p-12 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] w-full max-w-3xl mx-auto lg:max-w-none"
+            className="lg:col-span-8 bg-white dark:bg-gray-900 border border-gray-100 dark:border-white/5 p-5 sm:p-8 md:p-12 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] w-full max-w-3xl mx-auto lg:max-w-none"
           >
             <BookingForm />
           </motion.div>
