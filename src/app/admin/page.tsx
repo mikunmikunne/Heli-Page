@@ -681,7 +681,7 @@ export default function AdminPage() {
                       <th className="p-5">Order Type</th>
                       <th className="p-5">Details / Items</th>
                       <th className="p-5">Showroom Date</th>
-                      <th className="p-5">Status</th>
+                      <th className="p-5 min-w-[160px]">Status</th>
                       <th className="p-5 w-72 min-w-[240px]">Admin Note</th>
                       <th className="p-5 text-center">Action</th>
                     </tr>
@@ -717,7 +717,7 @@ export default function AdminPage() {
                           <td className="p-5 font-semibold text-slate-700 dark:text-slate-200">
                             {b.company_name === "Showroom Booking" ? b.preferred_date : "—"}
                           </td>
-                          <td className="p-5">
+                          <td className="p-5 min-w-[160px]">
                             <div className="relative flex items-center">
                               <select
                                 value={status}
@@ -782,7 +782,7 @@ export default function AdminPage() {
                       <th className="p-5">Submitted At (Date & Time)</th>
                       <th className="p-5">Email Address</th>
                       <th className="p-5 w-[30%]">Message Content</th>
-                      <th className="p-5">Status</th>
+                      <th className="p-5 min-w-[160px]">Status</th>
                       <th className="p-5 w-72 min-w-[240px]">Admin Note</th>
                       <th className="p-5 text-center">Action</th>
                     </tr>
@@ -806,7 +806,7 @@ export default function AdminPage() {
                           </td>
                           <td className="p-5">{c.email}</td>
                           <td className="p-5 leading-relaxed">{cleanMsgBody}</td>
-                          <td className="p-5">
+                          <td className="p-5 min-w-[160px]">
                             <div className="relative flex items-center">
                               <select
                                 value={status === "Replied" ? "Replied" : "Unprocessed"}

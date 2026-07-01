@@ -44,7 +44,7 @@ export default function Chatbot() {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isTyping]);
 
-  const handleSendMessage = (text: string) => {
+  const handleSendMessage = (text: string, isQuickOption = false) => {
     if (!text.trim()) return;
 
     // 1. Add User Message
@@ -60,28 +60,30 @@ export default function Chatbot() {
     setIsTyping(true);
 
     // 3. Save message to contacts database
-    const senderName = user?.email 
-      ? (user.user_metadata?.full_name || user.email.split("@")[0]) 
-      : "Guest User";
-    const senderEmail = user?.email || "guest_chatbot@heli.com";
-    
-    const saveChatToDb = async () => {
-      try {
-        const { error } = await supabase.from("contacts").insert([
-          {
-            full_name: senderName,
-            email: senderEmail,
-            message: `[Chatbot] ${text}`
+    if (!isQuickOption) {
+      const senderName = user?.email 
+        ? (user.user_metadata?.full_name || user.email.split("@")[0]) 
+        : "Guest User";
+      const senderEmail = user?.email || "guest_chatbot@heli.com";
+      
+      const saveChatToDb = async () => {
+        try {
+          const { error } = await supabase.from("contacts").insert([
+            {
+              full_name: senderName,
+              email: senderEmail,
+              message: `[Chatbot] ${text}`
+            }
+          ]);
+          if (error) {
+            console.error("Error saving chatbot message to Supabase:", error);
           }
-        ]);
-        if (error) {
-          console.error("Error saving chatbot message to Supabase:", error);
+        } catch (err) {
+          console.error("Failed to run Supabase insert:", err);
         }
-      } catch (err) {
-        console.error("Failed to run Supabase insert:", err);
-      }
-    };
-    saveChatToDb();
+      };
+      saveChatToDb();
+    }
     
     setTimeout(() => {
       const botResponse = generateBotResponse(text);
@@ -229,7 +231,7 @@ Phí đặt lịch trải nghiệm showroom là **200,000 VND** / phiên 45 phú
             {QUICK_QUESTIONS.map((q, idx) => (
               <button
                 key={idx}
-                onClick={() => handleSendMessage(q)}
+                onClick={() => handleSendMessage(q, true)}
                 className="shrink-0 text-[11px] font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 px-3 py-1.5 rounded-full hover:bg-emerald-50 dark:hover:bg-emerald-950/20 hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors border border-slate-200/40 dark:border-slate-800 cursor-pointer"
               >
                 {q}
@@ -239,7 +241,7 @@ Phí đặt lịch trải nghiệm showroom là **200,000 VND** / phiên 45 phú
 
           {/* Chat Form */}
           <form 
-            onSubmit={(e) => { e.preventDefault(); handleSendMessage(inputText); }}
+            onSubmit={(e) => { e.preventDefault(); handleSendMessage(inputText, false); }}
             className="p-3 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 flex gap-2"
           >
             <input
