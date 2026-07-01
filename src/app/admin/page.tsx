@@ -280,6 +280,10 @@ export default function AdminPage() {
           
           if (!error) {
             setBookings(bookings.map((b) => (b.id === id ? { ...b, details: newDetails } : b)));
+            alert("Lưu ghi chú thành công!");
+          } else {
+            console.error(error);
+            alert(`Lỗi khi lưu ghi chú: ${error.message}. Hãy kiểm tra lại phân quyền (RLS) của bảng bookings trong Supabase!`);
           }
         }
       } else {
@@ -294,6 +298,10 @@ export default function AdminPage() {
           
           if (!error) {
             setContacts(contacts.map((c) => (c.id === id ? { ...c, message: newMsg } : c)));
+            alert("Lưu ghi chú thành công!");
+          } else {
+            console.error(error);
+            alert(`Lỗi khi lưu ghi chú: ${error.message}. Hãy kiểm tra lại phân quyền (RLS) của bảng contacts trong Supabase!`);
           }
         }
       }
@@ -343,6 +351,10 @@ export default function AdminPage() {
           
           if (!error) {
             setBookings(bookings.map((b) => (b.id === id ? { ...b, details: newDetails } : b)));
+            alert("Cập nhật trạng thái thành công!");
+          } else {
+            console.error(error);
+            alert(`Lỗi cập nhật trạng thái: ${error.message}`);
           }
         }
       } else {
@@ -356,6 +368,10 @@ export default function AdminPage() {
           
           if (!error) {
             setContacts(contacts.map((c) => (c.id === id ? { ...c, message: newMsg } : c)));
+            alert("Cập nhật trạng thái thành công!");
+          } else {
+            console.error(error);
+            alert(`Lỗi cập nhật trạng thái: ${error.message}`);
           }
         }
       }
@@ -707,8 +723,11 @@ export default function AdminPage() {
                             <div className="relative flex items-center">
                               <select
                                 value={status}
-                                onChange={(e) => handleStatusChange(b.id, e.target.value, "booking")}
-                                className="pl-3 pr-8 py-1.5 bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-800 rounded-lg text-slate-900 dark:text-white font-bold text-xs focus:outline-none focus:border-emerald-500 appearance-none cursor-pointer"
+                                onChange={(e) => {
+                                  handleStatusChange(b.id, e.target.value, "booking");
+                                  alert("Status updated successfully.");
+                                }}
+                                className="w-36 pl-3 pr-8 py-1.5 bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-800 rounded-lg text-slate-900 dark:text-white font-bold text-xs focus:outline-none focus:border-emerald-500 appearance-none cursor-pointer"
                               >
                                 <option value="Pending">Pending</option>
                                 <option value="Confirmed">Confirmed</option>
@@ -798,7 +817,7 @@ export default function AdminPage() {
                               <select
                                 value={status === "Replied" ? "Replied" : "Unprocessed"}
                                 onChange={(e) => handleStatusChange(c.id, e.target.value, "contact")}
-                                className="pl-3 pr-8 py-1.5 bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-800 rounded-lg text-slate-900 dark:text-white font-bold text-xs focus:outline-none focus:border-emerald-500 appearance-none cursor-pointer"
+                                className="w-36 pl-3 pr-8 py-1.5 bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-800 rounded-lg text-slate-900 dark:text-white font-bold text-xs focus:outline-none focus:border-emerald-500 appearance-none cursor-pointer"
                               >
                                 <option value="Unprocessed">Unprocessed</option>
                                 <option value="Replied">Replied</option>
@@ -894,7 +913,7 @@ export default function AdminPage() {
                               <select
                                 value={status === "Replied" ? "Replied" : "Unprocessed"}
                                 onChange={(e) => handleStatusChange(s.id, e.target.value, "contact")}
-                                className="pl-3 pr-8 py-1.5 bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-800 rounded-lg text-slate-900 dark:text-white font-bold text-xs focus:outline-none focus:border-emerald-500 appearance-none cursor-pointer"
+                                className="w-36 pl-3 pr-8 py-1.5 bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-800 rounded-lg text-slate-900 dark:text-white font-bold text-xs focus:outline-none focus:border-emerald-500 appearance-none cursor-pointer"
                               >
                                 <option value="Unprocessed">Unprocessed</option>
                                 <option value="Replied">Replied</option>
