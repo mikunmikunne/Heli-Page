@@ -156,15 +156,10 @@ export async function sendBookingEmails(data: BookingEmailData): Promise<void> {
             <p>If you need to make any changes to these details, please reply directly to this email.</p>
             
             <p style="margin-top: 30px; border-top: 1px dashed #e5e7eb; padding-top: 15px; font-size: 14px; color: #4b5563;">
-            For more information, please visit our website: <a href="${siteUrl}" style="color: #047857; text-decoration: underline; font-weight: bold;">Heli</a>
-            </p>
           </div>
           <div class="footer">
             <p>&copy; ${new Date().getFullYear()} Heli Smart Massage Chair. All rights reserved.</p>
-            <p>Chi tiết tại: <a href="${siteUrl}" style="color: #047857; text-decoration: underline; font-weight: bold;">Heli Smart Chair</a></p>
-            <p style="margin-top: 8px; font-size: 13px; color: #4b5563;">
-              Email: <a href="mailto:Heli%20%3Csupport@helicorp.vn%3E" style="color: #047857; text-decoration: underline; font-weight: 600;">support@helicorp.vn</a>
-            </p>
+            <p>Details: <a href="https://heli-smart-massage-chair.vercel.app/" style="color: #047857; text-decoration: underline; font-weight: bold;">Heli Smart Chair</a></p>
           </div>
         </div>
       </body>
@@ -307,15 +302,10 @@ export async function sendContactEmail(data: ContactEmailData): Promise<void> {
             <p>If you have any other questions, please feel free to reply directly to this email.</p>
             
             <p style="margin-top: 30px; border-top: 1px dashed #e5e7eb; padding-top: 15px; font-size: 14px; color: #4b5563;">
-            For more information, please visit our website:  <a href="${siteUrl}" style="color: #047857; text-decoration: underline; font-weight: bold;">Heli</a>
-            </p>
           </div>
           <div class="footer">
             <p>&copy; ${new Date().getFullYear()} Heli Smart Massage Chair. All rights reserved.</p>
-            <p>Chi tiết tại: <a href="${siteUrl}" style="color: #047857; text-decoration: underline; font-weight: bold;">Heli Smart Chair</a></p>
-            <p style="margin-top: 8px; font-size: 13px; color: #4b5563;">
-              Email: <a href="mailto:Heli%20%3Csupport@helicorp.vn%3E" style="color: #047857; text-decoration: underline; font-weight: 600;">support@helicorp.vn</a>
-            </p>
+            <p>Details: <a href="https://heli-smart-massage-chair.vercel.app/" style="color: #047857; text-decoration: underline; font-weight: bold;">Heli Smart Chair</a></p>
           </div>
         </div>
       </body>
@@ -397,7 +387,7 @@ export async function sendNewsletterConfirmationEmail(email: string): Promise<vo
     <html>
       <head>
         <meta charset="utf-8">
-        <title>Đăng ký bản tin thành công</title>
+        <title>Newsletter Subscription Confirmed</title>
         <style>
           body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; color: #333; margin: 0; padding: 0; }
           .container { max-width: 600px; margin: 30px auto; background: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
@@ -413,12 +403,12 @@ export async function sendNewsletterConfirmationEmail(email: string): Promise<vo
             <h1>Heli Smart Massage Chair</h1>
           </div>
           <div class="content">
-            <p>Chào bạn,</p>
-            <p>Chúng tôi đã nhận được thông tin gmail của bạn. Chúng tôi sẽ thông báo cho bạn những tin tức mới nhất của Heli. Heli xin cảm ơn!</p>
+            <p>Hello,</p>
+            <p>Thank you for subscribing to the Heli newsletter. We are excited to keep you updated on the latest wellness technology, exclusive offers, and product updates from the Heli engineering team!</p>
           </div>
           <div class="footer">
             <p>&copy; ${new Date().getFullYear()} Heli Smart Massage Chair. All rights reserved.</p>
-            <p>Chi tiết tại: <a href="${siteUrl}" style="color: #047857; text-decoration: underline; font-weight: bold;">Heli Smart Chair</a></p>
+            <p>Details: <a href="https://heli-smart-massage-chair.vercel.app/" style="color: #047857; text-decoration: underline; font-weight: bold;">Heli Smart Chair</a></p>
           </div>
         </div>
       </body>
@@ -428,7 +418,7 @@ export async function sendNewsletterConfirmationEmail(email: string): Promise<vo
   await transporter.sendMail({
     from: `"${fromName}" <${fromEmail}>`,
     to: email,
-    subject: 'Xác nhận đăng ký nhận bản tin thành công | Heli Smart Massage Chair',
+    subject: 'Newsletter Subscription Confirmed | Heli Smart Massage Chair',
     html: htmlContent,
   });
 }
