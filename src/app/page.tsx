@@ -1,7 +1,16 @@
 import type { Metadata } from "next";
 import Header from "./component/header"; 
 import Footer from "./component/footer";
-import { Hero, Benefits, Steps, Testimonials, FAQ, CTA, SpecsSection, NewsletterSection } from "./home-components";
+import { Hero } from "./home-components";
+import dynamic from "next/dynamic";
+
+const Benefits = dynamic(() => import("./home-components").then((m) => m.Benefits), { ssr: true });
+const SpecsSection = dynamic(() => import("./home-components").then((m) => m.SpecsSection), { ssr: true });
+const Steps = dynamic(() => import("./home-components").then((m) => m.Steps), { ssr: true });
+const Testimonials = dynamic(() => import("./home-components").then((m) => m.Testimonials), { ssr: true });
+const FAQ = dynamic(() => import("./home-components").then((m) => m.FAQ), { ssr: true });
+const CTA = dynamic(() => import("./home-components").then((m) => m.CTA), { ssr: true });
+const NewsletterSection = dynamic(() => import("./home-components").then((m) => m.NewsletterSection), { ssr: true });
 
 export const metadata: Metadata = {
   title: "Heli Smart Massage Chair | Next-Gen AI Wellness",

@@ -18,8 +18,7 @@ const inter = Inter({
 
 import { AuthProvider } from "@/context/AuthContext";
 import { CartProvider } from "@/context/CartContext";
-import Chatbot from "@/app/component/Chatbot";
-import BehaviorTracker from "@/app/component/BehaviorTracker";
+import ClientShell from "@/app/component/ClientShell";
 
 export const metadata: Metadata = {
   title: "Heli Smart Massage Chair | Next-Gen AI Wellness",
@@ -81,8 +80,7 @@ export default function RootLayout({
         <AuthProvider>
           <CartProvider>
             {children}
-            <Chatbot />
-            <BehaviorTracker />
+            <ClientShell />
           </CartProvider>
         </AuthProvider>
       </body>
