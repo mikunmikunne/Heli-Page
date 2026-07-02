@@ -646,7 +646,7 @@ export const NewsletterSection = () => {
     e.preventDefault();
     if (!email || !email.includes("@")) {
       setStatus("error");
-      setMsg("Vui lòng nhập địa chỉ email hợp lệ.");
+      setMsg("Please enter a valid email address.");
       return;
     }
 
@@ -664,16 +664,16 @@ export const NewsletterSection = () => {
       
       if (res.ok) {
         setStatus("success");
-        setMsg("Đăng ký thành công! Cảm ơn bạn đã quan tâm đến Heli.");
+        setMsg("Subscription successful! Thank you for your interest in Heli.");
         setEmail("");
       } else {
         setStatus("error");
-        setMsg(data.error || "Có lỗi xảy ra. Vui lòng thử lại sau.");
+        setMsg(data.error || "An error occurred. Please try again later.");
       }
     } catch (err) {
       console.error(err);
       setStatus("error");
-      setMsg("Lỗi kết nối mạng. Vui lòng thử lại.");
+      setMsg("Network connection error. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -695,7 +695,7 @@ export const NewsletterSection = () => {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="Nhập địa chỉ email của bạn..."
+            placeholder="Enter your email address..."
             className="flex-grow px-5 py-4 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl focus:outline-none focus:border-emerald-500 text-slate-900 dark:text-white text-sm"
             required
             disabled={loading}
@@ -705,7 +705,7 @@ export const NewsletterSection = () => {
             className="bg-emerald-700 hover:bg-emerald-800 text-white font-bold px-8 py-4 rounded-2xl transition shadow-lg disabled:opacity-50 text-sm cursor-pointer shrink-0"
             disabled={loading}
           >
-            {loading ? "Đang gửi..." : "Đăng ký nhận tin"}
+            {loading ? "Sending..." : "Subscribe"}
           </button>
         </form>
 
