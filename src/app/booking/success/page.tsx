@@ -10,6 +10,7 @@ import { Suspense } from "react";
 function SuccessContent() {
   const searchParams = useSearchParams();
   const bookingId = searchParams.get("bookingId") || "N/A";
+  const isFree = searchParams.get("free") === "true";
 
   return (
     <div className="w-full max-w-md bg-white dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800/80 shadow-2xl p-8 sm:p-10 rounded-3xl text-center relative overflow-hidden">
@@ -19,9 +20,13 @@ function SuccessContent() {
         <CheckCircle2 className="w-12 h-12 text-emerald-600 dark:text-emerald-400" />
       </div>
 
-      <h2 className="text-3xl font-black text-slate-900 dark:text-white mb-3">Deposit Successful!</h2>
+      <h2 className="text-3xl font-black text-slate-900 dark:text-white mb-3">
+        {isFree ? "Booking Confirmed!" : "Deposit Successful!"}
+      </h2>
       <p className="text-sm text-slate-500 dark:text-slate-400 mb-6">
-        Your transaction has been securely processed. Below is your reference number.
+        {isFree
+          ? "Your showroom trial session is registered successfully."
+          : "Your transaction has been securely processed. Below is your reference number."}
       </p>
 
       <div className="bg-slate-50 dark:bg-slate-850 p-4 rounded-xl text-xs font-semibold font-mono text-slate-600 dark:text-slate-300 select-all mb-8 border border-slate-100 dark:border-slate-800">
@@ -31,11 +36,19 @@ function SuccessContent() {
       <div className="space-y-4 mb-8 text-left text-xs text-slate-600 dark:text-slate-400 leading-relaxed border-t border-slate-200/50 dark:border-slate-800/60 pt-6">
         <div className="flex gap-2">
           <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-          <span>A confirmation email with deposit invoice and product specifics has been sent.</span>
+          <span>
+            {isFree
+              ? "A confirmation email with session date, time, and location has been sent."
+              : "A confirmation email with deposit invoice and product specifics has been sent."}
+          </span>
         </div>
         <div className="flex gap-2">
           <ShoppingBag className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-          <span>For pre-orders, our white-glove setup team will contact you to coordinate home delivery.</span>
+          <span>
+            {isFree
+              ? "We look forward to welcoming you at our showroom! Please arrive 5 minutes before your scheduled slot."
+              : "For pre-orders, our white-glove setup team will contact you to coordinate home delivery."}
+          </span>
         </div>
       </div>
 

@@ -99,9 +99,9 @@ export default function BookingForm() {
     }
   } else {
     // Showroom Experience Booking
-    totalAmount = 200000;
-    depositAmount = 200000; // full pay
-    orderSummaryText = "Showroom 1-1 Trial Session Booking";
+    totalAmount = 0;
+    depositAmount = 0; // free!
+    orderSummaryText = "Showroom 1-1 Trial Session Booking (Free)";
   }
 
   const onSubmit: SubmitHandler<FormState> = async (data) => {
@@ -149,30 +149,36 @@ export default function BookingForm() {
       // If checkout is successful, simulate payment redirect or create VNPay url
       console.log("Booking created successfully:", result);
       
-      // Attempt to create VNPay payment url
-      try {
-        const payResponse = await fetch("/api/payments/create-vnpay-url", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            bookingId: result.bookingId,
-            amount: depositAmount,
-            description: `Heli Payment for ${orderSummaryText}`
-          })
-        });
-        
-        const payResult = await payResponse.json();
-        
-        if (payResponse.ok && payResult.vnpayUrl) {
-          // Redirect to VNPay
-          if (checkoutParam === "cart") {
-            await clearCart();
+      if (bookingType === "order") {
+        // Attempt to create VNPay payment url for pre-orders
+        try {
+          const payResponse = await fetch("/api/payments/create-vnpay-url", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              bookingId: result.bookingId,
+              amount: depositAmount,
+              description: `Heli Payment for ${orderSummaryText}`
+            })
+          });
+          
+          const payResult = await payResponse.json();
+          
+          if (payResponse.ok && payResult.vnpayUrl) {
+            // Redirect to VNPay
+            if (checkoutParam === "cart") {
+              await clearCart();
+            }
+            window.location.href = payResult.vnpayUrl;
+            return;
           }
-          window.location.href = payResult.vnpayUrl;
-          return;
+        } catch (payErr) {
+          console.error("VNPay payment creation failed, falling back to instant success screen:", payErr);
         }
-      } catch (payErr) {
-        console.error("VNPay payment creation failed, falling back to instant success screen:", payErr);
+      } else {
+        // Free showroom trial booking - redirect directly to success page with free parameter
+        router.push(`/booking/success?bookingId=${result.bookingId}&free=true`);
+        return;
       }
 
       // Local Success Screen (Fallback if VNPay routes are offline or testing)
@@ -450,11 +456,11 @@ export default function BookingForm() {
           </div>
           <div className="flex justify-between">
             <span>Total price:</span>
-            <span className="font-semibold">{totalAmount.toLocaleString()} VND</span>
+            <span className="font-semibold">{bookingType === "order" ? `${totalAmount.toLocaleString()} VND` : "FREE"}</span>
           </div>
           <div className="flex justify-between border-t border-emerald-200/50 dark:border-emerald-900/40 pt-2 font-bold text-emerald-800 dark:text-emerald-300">
-            <span>{bookingType === "order" ? "Pre-order Deposit (20%):" : "Showroom trial fee (100%):"}</span>
-            <span>{depositAmount.toLocaleString()} VND</span>
+            <span>{bookingType === "order" ? "Pre-order Deposit (20%):" : "Booking Fee:"}</span>
+            <span>{bookingType === "order" ? `${depositAmount.toLocaleString()} VND` : "FREE"}</span>
           </div>
         </div>
       </div>
@@ -488,8 +494,10 @@ export default function BookingForm() {
       >
         {isSubmitting ? (
           <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-white"></div>
-        ) : (
+        ) : bookingType === "order" ? (
           `Pay ${depositAmount.toLocaleString()} VND via VNPay`
+        ) : (
+          "Book Free Showroom Trial"
         )}
       </button>
     </form>

@@ -107,6 +107,25 @@ export async function POST(req: Request) {
     }
 
     const bookingId = dbData?.[0]?.id || 'mock-id-' + Math.random().toString(36).substring(2, 9);
+
+    if (bookingType === 'experience') {
+      try {
+        const { sendBookingEmails } = await import('@/utils/email');
+        await sendBookingEmails({
+          fullName,
+          email,
+          phone,
+          companyName: 'Showroom Booking',
+          employeeCount: '1-20 employees',
+          preferredDate: preferredDate || new Date().toISOString().split('T')[0],
+          location: dbLocation,
+          details: dbDetails,
+        });
+        console.log('Showroom booking confirmation email dispatched.');
+      } catch (emailErr) {
+        console.error('Failed to send showroom booking confirmation email:', emailErr);
+      }
+    }
     
     return NextResponse.json({ success: true, bookingId }, { status: 200 });
 

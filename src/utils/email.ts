@@ -103,9 +103,11 @@ export async function sendBookingEmails(data: BookingEmailData): Promise<void> {
             <p>Thank you for your booking request</p>
           </div>
           <div class="content">
-            <h2>Booking Submitted Successfully!</h2>
+            <h2>${data.companyName === 'Showroom Booking' ? 'Showroom Trial Session Confirmed!' : 'Booking Submitted Successfully!'}</h2>
             <p>Hi <strong>${data.fullName}</strong>,</p>
-            <p>We have successfully received your booking request. Below is a summary of the details you submitted:</p>
+            <p>${data.companyName === 'Showroom Booking'
+              ? 'We are honored to welcome you for a private trial session at our showroom. We have successfully registered your slot for the date listed below:'
+              : 'We have successfully received your booking request. Below is a summary of the details you submitted:'}</p>
             
             <table class="details-table">
               <tr>
@@ -145,8 +147,10 @@ export async function sendBookingEmails(data: BookingEmailData): Promise<void> {
             </table>
 
             <div class="next-steps">
-              <h3>What happens next?</h3>
-              <p>Our wellness coordinator will review your details and contact you to confirm within <strong>2 business hours</strong>.</p>
+              <h3>${data.companyName === 'Showroom Booking' ? 'Showroom Trial Details' : 'What happens next?'}</h3>
+              <p>${data.companyName === 'Showroom Booking'
+                ? 'Our showroom coordinator will prepare our Comfort, Balance, and Luxe models for your private session. Please arrive 5 minutes before your scheduled slot. We look forward to welcoming you!'
+                : 'Our wellness coordinator will review your details and contact you to confirm within <strong>2 business hours</strong>.'}</p>
             </div>
 
             <p>If you need to make any changes to these details, please reply directly to this email.</p>
