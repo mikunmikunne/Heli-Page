@@ -18,12 +18,7 @@ export const Hero = () => {
       <div className="absolute top-1/3 right-1/4 w-[400px] h-[400px] bg-teal-500/10 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="z-10"
-        >
+        <div className="z-10">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-emerald-100/80 dark:bg-emerald-950/40 rounded-full text-emerald-800 dark:text-emerald-300 text-xs font-bold mb-6">
             <Sparkles className="w-3.5 h-3.5" />
             <span>AI-Powered Wellness Technology</span>
@@ -62,14 +57,9 @@ export const Hero = () => {
               Rated <span className="text-slate-900 dark:text-white font-black">4.9/5 stars</span> by over <span className="text-slate-900 dark:text-white font-black">10,000+</span> wellness enthusiasts
             </p>
           </div>
-        </motion.div>
+        </div>
 
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative"
-        >
+        <div className="relative">
           <div className="absolute -top-10 -right-10 w-96 h-96 bg-emerald-200/20 dark:bg-emerald-800/10 rounded-full blur-[100px] pointer-events-none" />
           <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl aspect-[4/3] sm:aspect-[16/11]">
             <Image 
@@ -81,7 +71,7 @@ export const Hero = () => {
               fetchPriority="high"
             />
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
@@ -147,7 +137,7 @@ export const Benefits = () => {
                       src={details.image} 
                       alt={details.name} 
                       fill 
-                      sizes="(max-width: 768px) 100vw, 33vw"
+                      sizes="(max-width: 640px) 240px, (max-width: 768px) 300px, 360px"
                       className="object-contain p-2 group-hover:scale-105 transition-transform duration-700" 
                     />
                   </div>
@@ -224,7 +214,7 @@ const RecentlyViewed = () => {
           return (
             <Link key={id} href="#products" className="flex items-center gap-4 p-4 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-150 dark:border-slate-800/80 hover:brightness-95 transition-all">
               <div className="relative w-16 h-16 rounded-xl overflow-hidden shrink-0 bg-slate-100">
-                <Image src={details.image} alt={details.name} fill className="object-cover" />
+                <Image src={details.image} alt={details.name} fill sizes="64px" className="object-cover" />
               </div>
               <div>
                 <h4 className="font-bold text-slate-900 dark:text-white text-sm">{details.name}</h4>
@@ -275,7 +265,7 @@ export const Steps = () => {
                 <Image 
                   src="https://images.unsplash.com/photo-1592078615290-033ee584e267?auto=format&fit=crop&q=80&w=600" 
                   fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
+                  sizes="(max-width: 640px) 240px, (max-width: 768px) 320px, 400px"
                   className="rounded-3xl shadow-lg object-cover"
                   alt="Heli smart relaxation experience"
                 />
@@ -286,7 +276,7 @@ export const Steps = () => {
                 <Image 
                   src="https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&q=80&w=600" 
                   fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
+                  sizes="(max-width: 640px) 240px, (max-width: 768px) 320px, 400px"
                   className="rounded-3xl shadow-lg object-cover animate-pulse"
                   alt="Modern Heli Wellness Setting"
                 />
@@ -337,7 +327,7 @@ export const Testimonials = () => {
               <p className="text-lg text-slate-700 dark:text-slate-300 italic mb-8">&quot;{review.text}&quot;</p>
               <div className="flex items-center gap-4">
                 <div className="relative w-12 h-12 rounded-full overflow-hidden shrink-0">
-                  <Image src={review.avatar} alt={review.name} fill className="object-cover" />
+                  <Image src={review.avatar} alt={review.name} fill sizes="48px" className="object-cover" />
                 </div>
                 <div>
                   <p className="font-bold text-slate-900 dark:text-white">{review.name}</p>
