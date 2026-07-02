@@ -219,7 +219,7 @@ export default function BookingForm() {
           className={`flex-1 py-3.5 text-sm font-black rounded-xl transition-all flex items-center justify-center gap-2 ${
             bookingType === "order"
               ? "bg-white dark:bg-slate-700 text-emerald-700 dark:text-white shadow-md"
-              : "text-slate-500 hover:text-slate-900 dark:hover:text-white"
+              : "text-slate-650 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
           }`}
         >
           <ShoppingBag className="w-4 h-4" />
@@ -231,7 +231,7 @@ export default function BookingForm() {
           className={`flex-1 py-3.5 text-sm font-black rounded-xl transition-all flex items-center justify-center gap-2 ${
             bookingType === "experience"
               ? "bg-white dark:bg-slate-700 text-emerald-700 dark:text-white shadow-md"
-              : "text-slate-500 hover:text-slate-900 dark:hover:text-white"
+              : "text-slate-650 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
           }`}
         >
           <Calendar className="w-4 h-4" />
@@ -460,8 +460,8 @@ export default function BookingForm() {
       </div>
 
       {/* Google reCAPTCHA v2 */}
-      {formInteracted && (
-        <div className="flex justify-center py-2">
+      <div className="min-h-[80px] flex justify-center items-center py-2">
+        {formInteracted && (
           <ReCAPTCHA
             ref={recaptchaRef}
             sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"} // fallback default test key
@@ -471,8 +471,8 @@ export default function BookingForm() {
               }
             }}
           />
-        </div>
-      )}
+        )}
+      </div>
 
       {submitError && (
         <div className="text-red-600 dark:text-red-400 text-sm font-semibold text-center bg-red-50 dark:bg-red-950/20 py-3 px-4 rounded-xl border border-red-200 dark:border-red-900/50">
@@ -484,7 +484,7 @@ export default function BookingForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-4.5 rounded-xl font-bold text-base shadow-lg shadow-emerald-600/20 dark:shadow-emerald-900/40 disabled:opacity-70 flex justify-center items-center cursor-pointer active:scale-98 transition-transform"
+        className="w-full bg-emerald-700 hover:bg-emerald-800 text-white py-4.5 rounded-xl font-bold text-base shadow-lg shadow-emerald-700/20 dark:shadow-emerald-900/40 disabled:opacity-70 flex justify-center items-center cursor-pointer active:scale-98 transition-transform"
       >
         {isSubmitting ? (
           <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-white"></div>
