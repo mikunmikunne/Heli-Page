@@ -53,6 +53,14 @@ export default function Header() {
     return pathname === href || pathname.startsWith(href + "/");
   };
 
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    setIsMenuOpen(false);
+    if (href === "/" && pathname === "/") {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
   // Close menu and drawers on pathname change
   useEffect(() => {
     setIsMenuOpen(false);
@@ -85,7 +93,11 @@ export default function Header() {
           
           {/* Logo */}
           <div className="flex-1 flex justify-start">
-            <Link href="/" className="flex items-center gap-2 text-lg sm:text-2xl font-black text-emerald-950 dark:text-emerald-300 tracking-tight hover:opacity-90 transition-opacity">
+            <Link
+              href="/"
+              onClick={(e) => handleLinkClick(e, "/")}
+              className="flex items-center gap-2 text-lg sm:text-2xl font-black text-emerald-950 dark:text-emerald-300 tracking-tight hover:opacity-90 transition-opacity"
+            >
               <svg
                 className="w-8 h-8 sm:w-9 sm:h-9 text-emerald-600 dark:text-emerald-400 shrink-0"
                 viewBox="0 0 24 24"
@@ -109,6 +121,7 @@ export default function Header() {
                 <Link
                   key={item.href}
                   href={item.href}
+                  onClick={(e) => handleLinkClick(e, item.href)}
                   className={
                     active
                       ? "text-emerald-700 dark:text-emerald-400 font-bold border-b-2 border-emerald-700 dark:border-emerald-400 pb-1"
@@ -120,7 +133,11 @@ export default function Header() {
               );
             })}
             {isAdmin && (
-              <Link href="/admin" className="text-amber-600 dark:text-amber-400 hover:opacity-80 transition-opacity font-bold">
+              <Link
+                href="/admin"
+                onClick={(e) => handleLinkClick(e, "/admin")}
+                className="text-amber-600 dark:text-amber-400 hover:opacity-80 transition-opacity font-bold"
+              >
                 Dashboard
               </Link>
             )}
@@ -249,6 +266,7 @@ export default function Header() {
               <Link
                 key={item.href}
                 href={item.href}
+                onClick={(e) => handleLinkClick(e, item.href)}
                 className={`py-4 px-4 rounded-lg transition-colors ${
                   active
                     ? "text-emerald-700 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-950/45"
@@ -260,7 +278,11 @@ export default function Header() {
             );
           })}
           {isAdmin && (
-            <Link href="/admin" className="py-4 px-4 rounded-lg text-amber-600 hover:bg-amber-50 dark:hover:bg-slate-900">
+            <Link
+              href="/admin"
+              onClick={(e) => handleLinkClick(e, "/admin")}
+              className="py-4 px-4 rounded-lg text-amber-600 hover:bg-amber-50 dark:hover:bg-slate-900"
+            >
               Dashboard (Admin)
             </Link>
           )}
@@ -275,7 +297,11 @@ export default function Header() {
         </div>
 
         <div className="mt-8 flex flex-col gap-4">
-          <Link href="/booking" className="inline-block text-center w-full bg-emerald-700 text-white py-3 rounded-xl font-bold text-base hover:brightness-105 active:scale-95 transition-all shadow-lg shadow-emerald-700/20">
+          <Link
+            href="/booking"
+            onClick={(e) => handleLinkClick(e, "/booking")}
+            className="inline-block text-center w-full bg-emerald-700 text-white py-3 rounded-xl font-bold text-base hover:brightness-105 active:scale-95 transition-all shadow-lg shadow-emerald-700/20"
+          >
             Book Showroom / Order
           </Link>
         </div>
